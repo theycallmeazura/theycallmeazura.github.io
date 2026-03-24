@@ -13,7 +13,6 @@
       overflow: hidden;
     }
 
-    /* PARTICLES BACKGROUND */
     canvas {
       position: fixed;
       top: 0;
@@ -42,11 +41,11 @@
 
     /* PROFILE IMAGE */
     .profile {
-      width: 90px;
-      height: 90px;
+      width: 100px;
+      height: 100px;
       border-radius: 50%;
       margin-bottom: 15px;
-      box-shadow: 0 0 20px #fff;
+      box-shadow: 0 0 25px #fff;
       object-fit: cover;
     }
 
@@ -69,6 +68,13 @@
 
     @keyframes blink {
       50% {border-color: transparent;}
+    }
+
+    .desc {
+      margin-top: 20px;
+      font-size: 14px;
+      color: #ccc;
+      line-height: 1.6;
     }
 
     .buttons {
@@ -112,28 +118,39 @@
 <canvas id="particles"></canvas>
 
 <div class="card">
-  <!-- ADD YOUR IMAGE LINK BELOW -->
-  <img class="profile" src="https://i.imgur.com/yourimage.png">
+
+  <!-- 🔥 PUT YOUR DISCORD PROFILE IMAGE LINK HERE -->
+  <img class="profile" src="https://cdn.discordapp.com/avatars/1476420907718152204/e8133febacee9df2d85280cd729a4094.webp?size=2048"
 
   <h1>Azura 🚀</h1>
   <div class="typing" id="typing"></div>
+
+  <div class="desc">
+    Hey guys, this is Azura!<br>
+    A Discord Community Manager 🔥<br>
+    Helping YouTubers manage and grow their servers.<br><br>
+    Wanna contact?<br>
+    📧 azura7636@gmail.com<br>
+    💬 theycallmeazura
+  </div>
 
   <div class="buttons">
     <a class="btn email" href="mailto:azura7636@gmail.com">📧 Email Me</a>
     <a class="btn discord">💬 Discord: theycallmeazura</a>
     <a class="btn instagram" href="https://instagram.com/theycallmeazura" target="_blank">📸 Instagram</a>
   </div>
+
 </div>
 
 <script>
-  // TYPING EFFECT
-  const text = "Discord Community Manager";
+  // TYPING TEXT
+  const text = "Only mail when required • Don't expect DM replies";
   let i = 0;
   function typing() {
     if (i < text.length) {
       document.getElementById("typing").innerHTML += text.charAt(i);
       i++;
-      setTimeout(typing, 60);
+      setTimeout(typing, 50);
     }
   }
   typing();
