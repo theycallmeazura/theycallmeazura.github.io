@@ -9,12 +9,11 @@
 
     body {
       font-family: 'Segoe UI', sans-serif;
-      background: radial-gradient(circle at top, #111, #000);
+      background: radial-gradient(circle at top, #0a0a0a, #000);
       color: white;
       overflow-x: hidden;
     }
 
-    /* SMOOTH SCROLL */
     html { scroll-behavior: smooth; }
 
     /* NAV */
@@ -29,13 +28,10 @@
       color: #aaa;
       margin-left: 20px;
       text-decoration: none;
-      font-size: 14px;
       transition: 0.3s;
     }
 
-    .nav a:hover {
-      color: white;
-    }
+    .nav a:hover { color: #fff; }
 
     /* SECTION */
     section {
@@ -64,27 +60,24 @@
       width: 100%;
       text-align: center;
       border: 1px solid rgba(255,255,255,0.1);
-      transition: 0.3s;
+      box-shadow: 0 0 40px rgba(255,255,255,0.08);
     }
 
-    .card:hover {
-      transform: translateY(-5px);
-    }
-
+    /* NAME GLOW */
     h1 {
       font-size: 34px;
-      margin-bottom: 10px;
+      text-shadow: 0 0 10px #fff, 0 0 25px #fff;
     }
 
-    .tagline {
-      color: #888;
-      font-size: 14px;
-    }
+    .tagline { color: #888; font-size: 14px; }
+    .desc { margin-top: 15px; color: #bbb; font-size: 14px; }
 
-    .desc {
-      margin-top: 15px;
-      color: #bbb;
-      font-size: 14px;
+    /* TYPING */
+    #typing {
+      margin-top: 10px;
+      color: #aaa;
+      font-size: 13px;
+      height: 18px;
     }
 
     /* DISCORD CARD */
@@ -108,10 +101,7 @@
       margin-right: 10px;
     }
 
-    .status {
-      color: #23a55a;
-      font-size: 12px;
-    }
+    .status { color: #23a55a; font-size: 12px; }
 
     .bio {
       margin-top: 10px;
@@ -128,14 +118,48 @@
       text-decoration: none;
       width: 80%;
       color: white;
-      background: rgba(255,255,255,0.05);
-      border: 1px solid rgba(255,255,255,0.1);
+      position: relative;
+      overflow: hidden;
       transition: 0.3s;
     }
 
+    .email {
+      background: #111;
+      box-shadow: 0 0 10px #fff;
+    }
+
+    .discord {
+      background: #5865F2;
+      box-shadow: 0 0 15px #5865F2;
+    }
+
+    .instagram {
+      background: linear-gradient(45deg,#ff004c,#ff7a00,#ff00cc);
+      box-shadow: 0 0 15px #ff0077;
+    }
+
     .btn:hover {
-      background: rgba(255,255,255,0.1);
-      transform: scale(1.03);
+      transform: scale(1.05);
+    }
+
+    .email:hover { box-shadow: 0 0 20px #fff; }
+    .discord:hover { box-shadow: 0 0 25px #5865F2; }
+    .instagram:hover { box-shadow: 0 0 25px #ff0077; }
+
+    /* RIPPLE */
+    .ripple {
+      position: absolute;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.4);
+      transform: scale(0);
+      animation: ripple 0.6s linear;
+    }
+
+    @keyframes ripple {
+      to {
+        transform: scale(4);
+        opacity: 0;
+      }
     }
 
     /* PARTICLES */
@@ -158,11 +182,13 @@
   <a href="#about">About</a>
 </div>
 
-<!-- HOME -->
 <section id="home">
   <div class="card">
+
     <h1>Azura 🚀</h1>
     <div class="tagline">Discord Community Manager</div>
+
+    <div id="typing"></div>
 
     <div class="desc">
       Helping creators build and manage strong communities.
@@ -183,31 +209,56 @@
       </div>
     </div>
 
-    <a class="btn" href="mailto:azura7636@gmail.com">Email</a>
-    <a class="btn" href="https://instagram.com/theycallmeazura" target="_blank">Instagram</a>
+    <a class="btn email" href="mailto:azura7636@gmail.com">Email</a>
+    <a class="btn discord">Discord</a>
+    <a class="btn instagram" href="https://instagram.com/theycallmeazura" target="_blank">Instagram</a>
+
   </div>
 </section>
 
-<!-- ABOUT -->
 <section id="about">
   <div class="card">
     <h1>About Me</h1>
     <div class="desc">
-      I manage Discord communities for creators with a focus on structure, moderation, and growth.
+      I manage Discord communities for creators with a focus on growth & moderation.
     </div>
   </div>
 </section>
 
 <script>
+  // TYPING EFFECT
+  const text = "Managing communities. Growing servers. Building brands.";
+  let i = 0;
+  function type() {
+    if (i < text.length) {
+      document.getElementById("typing").innerHTML += text.charAt(i);
+      i++;
+      setTimeout(type, 40);
+    }
+  }
+  type();
+
+  // RIPPLE
+  document.querySelectorAll(".btn").forEach(btn=>{
+    btn.addEventListener("click",function(e){
+      const circle=document.createElement("span");
+      circle.classList.add("ripple");
+      const rect=this.getBoundingClientRect();
+      circle.style.left=e.clientX-rect.left+"px";
+      circle.style.top=e.clientY-rect.top+"px";
+      this.appendChild(circle);
+      setTimeout(()=>circle.remove(),600);
+    });
+  });
+
   // PARTICLES
   const canvas = document.getElementById("particles");
   const ctx = canvas.getContext("2d");
-
   canvas.width = innerWidth;
   canvas.height = innerHeight;
 
-  let particles = [];
-  for(let i=0;i<60;i++){
+  let particles=[];
+  for(let i=0;i<70;i++){
     particles.push({
       x:Math.random()*canvas.width,
       y:Math.random()*canvas.height,
@@ -224,7 +275,6 @@
       ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
       ctx.fillStyle="white";
       ctx.fill();
-
       p.x+=p.dx;
       p.y+=p.dy;
     });
@@ -232,7 +282,7 @@
   }
   draw();
 
-  // SCROLL ANIMATION
+  // SCROLL
   const sections=document.querySelectorAll("section");
   function show(){
     let y=scrollY;
