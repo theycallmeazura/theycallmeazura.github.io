@@ -25,13 +25,15 @@
     .nav{
       position:fixed;
       top:20px;
-      right:30px;
+      right:20px;
+      z-index:100;
     }
 
     .nav a{
       color:#aaa;
-      margin-left:15px;
+      margin-left:12px;
       text-decoration:none;
+      font-size:14px;
     }
 
     .nav a:hover{color:#fff;}
@@ -56,15 +58,15 @@
       background:rgba(255,255,255,0.05);
       backdrop-filter:blur(20px);
       border-radius:20px;
-      padding:40px;
-      max-width:500px;
+      padding:30px;
+      max-width:420px;
       width:100%;
       text-align:center;
       border:1px solid rgba(255,255,255,0.1);
     }
 
     h1{
-      font-size:32px;
+      font-size:28px;
       background:linear-gradient(90deg,#00c6ff,#ff0055);
       -webkit-background-clip:text;
       -webkit-text-fill-color:transparent;
@@ -86,7 +88,7 @@
       padding:12px;
       border-radius:10px;
       text-decoration:none;
-      width:80%;
+      width:90%;
       color:white;
       background:rgba(255,255,255,0.05);
       border:1px solid rgba(255,255,255,0.1);
@@ -95,10 +97,6 @@
     .btn:hover{
       background:rgba(255,255,255,0.1);
       transform:scale(1.05);
-    }
-
-    .icon{
-      font-size:18px;
     }
 
     input, textarea{
@@ -171,13 +169,8 @@
     <h1>Socials</h1>
     <div class="typing" data-text='["Connect with me","Stay updated","Let's grow together"]'></div>
 
-    <a class="btn" href="https://discord.com/users/1476420907718152204" target="_blank">
-      <span class="icon">💬</span> Discord
-    </a>
-
-    <a class="btn" href="https://instagram.com/theycallmeazura" target="_blank">
-      <span class="icon">📸</span> Instagram
-    </a>
+    <a class="btn" href="https://discord.com/users/1476420907718152204" target="_blank">💬 Discord</a>
+    <a class="btn" href="https://instagram.com/theycallmeazura" target="_blank">📸 Instagram</a>
 
   </div>
 </section>
@@ -210,20 +203,18 @@
 
     <div class="faq-item">
       <div class="faq-question">How can I contact you?</div>
-      <div class="faq-answer">Use the contact form or socials.</div>
-    </div>
-
-    <div class="faq-item">
-      <div class="faq-question">Do you charge money?</div>
-      <div class="faq-answer">Yes, pricing depends on work.</div>
+      <div class="faq-answer">Use contact form or socials.</div>
     </div>
 
   </div>
 </section>
 
 <script>
-  // TYPING (1.5 sec hold)
-  document.querySelectorAll(".typing").forEach(el=>{
+document.addEventListener("DOMContentLoaded", function(){
+
+// TYPING (1.5 sec hold)
+document.querySelectorAll(".typing").forEach(el=>{
+  try{
     let texts=JSON.parse(el.getAttribute("data-text"));
     let i=0,j=0,cur="",del=false;
 
@@ -249,59 +240,66 @@
       }
     }
     type();
-  });
+  }catch(e){}
+});
 
-  // PARTICLES
+// PARTICLES SAFE
+try{
   const c=document.getElementById("particles");
-  const ctx=c.getContext("2d");
-  c.width=innerWidth;c.height=innerHeight;
+  if(c){
+    const ctx=c.getContext("2d");
+    c.width=window.innerWidth;
+    c.height=window.innerHeight;
 
-  let p=[];
-  for(let i=0;i<50;i++){
-    p.push({x:Math.random()*c.width,y:Math.random()*c.height,r:Math.random()*2});
+    let p=[];
+    for(let i=0;i<40;i++){
+      p.push({x:Math.random()*c.width,y:Math.random()*c.height,r:Math.random()*2});
+    }
+
+    function draw(){
+      ctx.clearRect(0,0,c.width,c.height);
+      p.forEach(a=>{
+        ctx.beginPath();
+        ctx.arc(a.x,a.y,a.r,0,6.28);
+        ctx.fillStyle="white";
+        ctx.fill();
+      });
+      requestAnimationFrame(draw);
+    }
+    draw();
   }
+}catch(e){}
 
-  function draw(){
-    ctx.clearRect(0,0,c.width,c.height);
-    p.forEach(a=>{
-      ctx.beginPath();
-      ctx.arc(a.x,a.y,a.r,0,6.28);
-      ctx.fillStyle="white";
-      ctx.fill();
-    });
-    requestAnimationFrame(draw);
-  }
-  draw();
-
-  // SCROLL
-  const sec=document.querySelectorAll("section");
-  function show(){
-    let y=scrollY;
-    sec.forEach(s=>{
-      if(y>s.offsetTop-window.innerHeight/1.2){
-        s.classList.add("active");
-      }
-    });
-  }
-  addEventListener("scroll",show);
-  addEventListener("load",show);
-
-  // CONTACT
-  function sendMail(){
-    let name=document.getElementById("name").value;
-    let email=document.getElementById("email").value;
-    let msg=document.getElementById("message").value;
-
-    window.location.href=`mailto:azura7636@gmail.com?subject=${name}&body=${msg} (${email})`;
-  }
-
-  // FAQ
-  document.querySelectorAll(".faq-item").forEach(item=>{
-    item.addEventListener("click",()=>{
-      item.classList.toggle("active");
-    });
+// SCROLL
+const sec=document.querySelectorAll("section");
+function show(){
+  let y=window.scrollY;
+  sec.forEach(s=>{
+    if(y>s.offsetTop-window.innerHeight/1.2){
+      s.classList.add("active");
+    }
   });
+}
+window.addEventListener("scroll",show);
+show();
 
+// CONTACT
+window.sendMail=function(){
+  let name=document.getElementById("name")?.value || "";
+  let email=document.getElementById("email")?.value || "";
+  let msg=document.getElementById("message")?.value || "";
+
+  window.location.href=`mailto:azura7636@gmail.com?subject=${name}&body=${msg} (${email})`;
+}
+
+// FAQ
+document.querySelectorAll(".faq-item").forEach(item=>{
+  item.addEventListener("click",()=>{
+    item.classList.toggle("active");
+  });
+});
+
+});
 </script>
 
 </body>
