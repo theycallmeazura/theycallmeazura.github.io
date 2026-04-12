@@ -9,13 +9,19 @@
 
     body{
       font-family:'Segoe UI',sans-serif;
-      background: radial-gradient(circle at center, #0a0a0a, #000);
+      background:#000;
       color:white;
-      scroll-behavior:smooth;
       overflow-x:hidden;
+      scroll-behavior:smooth;
     }
 
-    /* NAV */
+    canvas{
+      position:fixed;
+      top:0;
+      left:0;
+      z-index:-1;
+    }
+
     .nav{
       position:fixed;
       top:20px;
@@ -28,12 +34,10 @@
       margin-left:15px;
       text-decoration:none;
       font-size:14px;
-      transition:0.3s;
     }
 
     .nav a:hover{color:#fff;}
 
-    /* SECTION */
     section{
       min-height:100vh;
       display:flex;
@@ -50,7 +54,6 @@
       transform:translateY(0);
     }
 
-    /* CARD */
     .card{
       background:rgba(255,255,255,0.05);
       backdrop-filter:blur(20px);
@@ -60,10 +63,8 @@
       width:100%;
       text-align:center;
       border:1px solid rgba(255,255,255,0.1);
-      box-shadow:0 0 30px rgba(0,150,255,0.08);
     }
 
-    /* NAME */
     h1{
       font-size:36px;
       background:linear-gradient(90deg,#00c6ff,#ff0055,#00c6ff);
@@ -80,7 +81,6 @@
     .tagline{color:#aaa;}
     .desc{margin-top:15px;color:#bbb;font-size:14px;}
 
-    /* TYPING */
     #typing{
       margin-top:10px;
       color:#888;
@@ -88,37 +88,11 @@
       height:18px;
     }
 
-    /* DISCORD CARD */
-    .discord-card{
-      margin-top:20px;
-      padding:15px;
-      border-radius:12px;
-      background:#2b2d31;
-      text-align:left;
-    }
-
-    .discord-header{
-      display:flex;
-      align-items:center;
-    }
-
-    .discord-avatar{
-      width:50px;height:50px;
-      border-radius:50%;
-      margin-right:10px;
-    }
-
-    .status{color:#23a55a;font-size:12px;}
-
-    /* BUTTONS */
     .btn{
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      gap:10px;
+      display:block;
       margin:12px auto;
       padding:12px;
-      border-radius:12px;
+      border-radius:10px;
       text-decoration:none;
       width:80%;
       color:white;
@@ -126,8 +100,6 @@
       border:1px solid rgba(255,255,255,0.1);
       transition:0.3s;
     }
-
-    .btn svg{width:18px;height:18px;}
 
     .btn:hover{
       transform:scale(1.05);
@@ -139,13 +111,16 @@
 
 <body>
 
-<!-- NAV -->
+<canvas id="particles"></canvas>
+
 <div class="nav">
   <a href="#home">Home</a>
   <a href="#about">About</a>
+  <a href="#services">Services</a>
   <a href="#email">Email</a>
   <a href="#discord">Discord</a>
   <a href="#instagram">Instagram</a>
+  <a href="#contact">Contact</a>
 </div>
 
 <!-- HOME -->
@@ -157,17 +132,7 @@
     <div id="typing"></div>
 
     <div class="desc">
-      Helping creators build and manage communities.
-    </div>
-
-    <div class="discord-card">
-      <div class="discord-header">
-        <img class="discord-avatar" src="https://cdn.discordapp.com/avatars/1476420907718152204/e8133febacee9df2d85280cd729a4094.webp?size=2048">
-        <div>
-          <strong>theycallmeazura</strong><br>
-          <span class="status">● Online</span>
-        </div>
-      </div>
+      Helping creators build and manage strong communities.
     </div>
   </div>
 </section>
@@ -177,7 +142,21 @@
   <div class="card">
     <h1>About Me</h1>
     <div class="desc">
-      I manage Discord communities with focus on growth, moderation and engagement.
+      I manage Discord communities professionally.  
+      From moderation to engagement and server growth, I help creators build strong and active communities.
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="card">
+    <h1>Services</h1>
+    <div class="desc">
+      • Server Setup & Design  
+      • Moderation Management  
+      • Community Growth Strategy  
+      • Engagement Boosting  
     </div>
   </div>
 </section>
@@ -186,12 +165,11 @@
 <section id="email">
   <div class="card">
     <h1>Email</h1>
-    <a class="btn" href="mailto:azura7636@gmail.com">
-      <svg viewBox="0 0 24 24" fill="white">
-        <path d="M2 4h20v16H2z"/><path d="M2 4l10 9 10-9"/>
-      </svg>
-      Send Email
-    </a>
+    <div class="desc">
+      For business inquiries and serious work only.  
+      Expect replies only when necessary.
+    </div>
+    <a class="btn" href="mailto:azura7636@gmail.com">azura7636@gmail.com</a>
   </div>
 </section>
 
@@ -199,12 +177,10 @@
 <section id="discord">
   <div class="card">
     <h1>Discord</h1>
-    <a class="btn" href="#">
-      <svg viewBox="0 0 24 24" fill="white">
-        <path d="M20 0H4C1.8 0 0 1.8 0 4v16c0 2.2 1.8 4 4 4h16l-1.2-4.2 2.9 2.7 2.7 2.5V4c0-2.2-1.8-4-4-4z"/>
-      </svg>
-      Join Server
-    </a>
+    <div class="desc">
+      Username: <strong>theycallmeazura</strong><br>
+      Not always active on DMs.
+    </div>
   </div>
 </section>
 
@@ -212,12 +188,23 @@
 <section id="instagram">
   <div class="card">
     <h1>Instagram</h1>
+    <div class="desc">
+      Follow for updates, content and networking.
+    </div>
     <a class="btn" href="https://instagram.com/theycallmeazura" target="_blank">
-      <svg viewBox="0 0 24 24" fill="white">
-        <path d="M7 2h10a5 5 0 015 5v10a5 5 0 01-5 5H7a5 5 0 01-5-5V7a5 5 0 015-5zm5 5a5 5 0 100 10 5 5 0 000-10zm6.5-.9a1.4 1.4 0 11-2.8 0 1.4 1.4 0 012.8 0z"/>
-      </svg>
-      Open Instagram
+      @theycallmeazura
     </a>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="card">
+    <h1>Contact</h1>
+    <div class="desc">
+      Best way to reach me is via email.  
+      Keep messages short and professional.
+    </div>
   </div>
 </section>
 
@@ -234,7 +221,38 @@
   }
   type();
 
-  // SCROLL ANIMATION
+  // PARTICLES
+  const canvas=document.getElementById("particles");
+  const ctx=canvas.getContext("2d");
+  canvas.width=innerWidth;
+  canvas.height=innerHeight;
+
+  let particles=[];
+  for(let i=0;i<60;i++){
+    particles.push({
+      x:Math.random()*canvas.width,
+      y:Math.random()*canvas.height,
+      r:Math.random()*2,
+      dx:Math.random()-0.5,
+      dy:Math.random()-0.5
+    });
+  }
+
+  function draw(){
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    particles.forEach(p=>{
+      ctx.beginPath();
+      ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+      ctx.fillStyle="white";
+      ctx.fill();
+      p.x+=p.dx;
+      p.y+=p.dy;
+    });
+    requestAnimationFrame(draw);
+  }
+  draw();
+
+  // SCROLL
   const sections=document.querySelectorAll("section");
   function show(){
     let y=scrollY;
