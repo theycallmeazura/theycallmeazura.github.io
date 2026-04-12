@@ -22,7 +22,6 @@
       z-index:-1;
     }
 
-    /* NAV */
     .nav{
       position:fixed;
       top:20px;
@@ -91,7 +90,6 @@
       color:white;
       background:rgba(255,255,255,0.05);
       border:1px solid rgba(255,255,255,0.1);
-      cursor:pointer;
     }
 
     input, textarea{
@@ -103,6 +101,26 @@
       outline:none;
       background:#111;
       color:white;
+    }
+
+    /* Discord Card */
+    .discord-card{
+      margin-top:20px;
+      padding:15px;
+      border-radius:12px;
+      background:#2b2d31;
+      text-align:left;
+    }
+
+    .discord-header{
+      display:flex;
+      align-items:center;
+    }
+
+    .discord-avatar{
+      width:50px;height:50px;
+      border-radius:50%;
+      margin-right:10px;
     }
 
     /* FAQ */
@@ -141,6 +159,7 @@
 <div class="nav">
   <a href="#home">Home</a>
   <a href="#about">About</a>
+  <a href="#socials">Socials</a>
   <a href="#contact">Contact</a>
   <a href="#faq">FAQ</a>
 </div>
@@ -149,7 +168,7 @@
 <section id="home">
   <div class="card">
     <h1>theycallmeazura 🚀</h1>
-    <div class="typing" data-text='["Managing communities","Growing servers"]'></div>
+    <div class="typing" data-text='["Managing communities","Growing servers","Building brands"]'></div>
   </div>
 </section>
 
@@ -157,14 +176,38 @@
 <section id="about">
   <div class="card">
     <h1>About</h1>
-    <div class="desc">Professional Discord community manager.</div>
+    <div class="typing" data-text='["Professional Discord manager","Growth focused","Community builder"]'></div>
+    <div class="desc">Helping creators build strong communities.</div>
+  </div>
+</section>
+
+<!-- SOCIALS (MERGED) -->
+<section id="socials">
+  <div class="card">
+    <h1>Socials</h1>
+    <div class="typing" data-text='["Connect with me","Discord & Instagram","Stay updated"]'></div>
+
+    <div class="discord-card">
+      <div class="discord-header">
+        <img class="discord-avatar" src="https://cdn.discordapp.com/avatars/1476420907718152204/e8133febacee9df2d85280cd729a4094.webp?size=2048">
+        <div>
+          <strong>theycallmeazura</strong><br>
+          <span style="color:#23a55a;">● Online</span>
+        </div>
+      </div>
+    </div>
+
+    <a class="btn" href="https://instagram.com/theycallmeazura" target="_blank">
+      Instagram @theycallmeazura
+    </a>
+
   </div>
 </section>
 
 <!-- CONTACT -->
 <section id="contact">
   <div class="card">
-    <h1>Contact Me</h1>
+    <h1>Contact</h1>
 
     <input type="text" id="name" placeholder="Your Name">
     <input type="email" id="email" placeholder="Your Email">
@@ -181,24 +224,19 @@
 
     <div class="faq-item">
       <div class="faq-question">How fast do you reply?</div>
-      <div class="faq-answer">Usually within 24 hours.</div>
+      <div class="faq-answer">Within 24 hours usually.</div>
     </div>
 
     <div class="faq-item">
-      <div class="faq-question">Do you manage small servers?</div>
-      <div class="faq-answer">Yes, depending on requirements.</div>
-    </div>
-
-    <div class="faq-item">
-      <div class="faq-question">How to contact?</div>
-      <div class="faq-answer">Use the contact form or email.</div>
+      <div class="faq-question">Do you manage servers?</div>
+      <div class="faq-answer">Yes, based on requirements.</div>
     </div>
 
   </div>
 </section>
 
 <script>
-  // TYPING
+  // SMART TYPING (2.5 sec hold)
   document.querySelectorAll(".typing").forEach(el=>{
     let texts=JSON.parse(el.getAttribute("data-text"));
     let i=0,j=0,cur="",del=false;
@@ -211,7 +249,7 @@
       }
       else if(!del){
         del=true;
-        setTimeout(type,4000);
+        setTimeout(type,2500); // FIXED
       }
       else if(del && j>0){
         cur=cur.slice(0,--j);
@@ -262,16 +300,16 @@
   addEventListener("scroll",show);
   addEventListener("load",show);
 
-  // CONTACT MAIL
+  // CONTACT
   function sendMail(){
     let name=document.getElementById("name").value;
     let email=document.getElementById("email").value;
     let msg=document.getElementById("message").value;
 
-    window.location.href=`mailto:azura7636@gmail.com?subject=Contact from ${name}&body=${msg} (${email})`;
+    window.location.href=`mailto:azura7636@gmail.com?subject=${name}&body=${msg} (${email})`;
   }
 
-  // FAQ TOGGLE
+  // FAQ
   document.querySelectorAll(".faq-item").forEach(item=>{
     item.addEventListener("click",()=>{
       item.classList.toggle("active");
