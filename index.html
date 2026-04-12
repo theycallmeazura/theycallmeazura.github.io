@@ -22,6 +22,42 @@
       z-index:-1;
     }
 
+    /* LOADER */
+    #loader{
+      position:fixed;
+      width:100%;
+      height:100%;
+      background:#000;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      z-index:99999;
+      flex-direction:column;
+      transition:opacity 0.6s ease;
+    }
+
+    .loader-circle{
+      width:60px;
+      height:60px;
+      border:4px solid rgba(255,255,255,0.1);
+      border-top:4px solid #00c6ff;
+      border-radius:50%;
+      animation:spin 1s linear infinite;
+    }
+
+    @keyframes spin{
+      to{transform:rotate(360deg);}
+    }
+
+    #loader h2{
+      margin-top:15px;
+      font-size:20px;
+      background:linear-gradient(90deg,#00c6ff,#ff0055);
+      -webkit-background-clip:text;
+      -webkit-text-fill-color:transparent;
+    }
+
+    /* NAV */
     .nav{
       position:fixed;
       top:20px;
@@ -33,7 +69,6 @@
       color:#aaa;
       margin-left:15px;
       text-decoration:none;
-      font-size:14px;
     }
 
     .nav a:hover{color:#fff;}
@@ -45,8 +80,8 @@
       align-items:center;
       padding:40px;
       opacity:0;
-      transform:translateY(40px);
-      transition:0.8s ease;
+      transform:translateY(60px);
+      transition:1s ease;
     }
 
     section.active{
@@ -78,15 +113,14 @@
       to{background-position:200%;}
     }
 
-    .tagline{color:#aaa;}
-    .desc{margin-top:15px;color:#bbb;font-size:14px;}
-
-    #typing{
+    .typing{
       margin-top:10px;
       color:#888;
       font-size:13px;
       height:18px;
     }
+
+    .desc{margin-top:15px;color:#bbb;}
 
     .btn{
       display:block;
@@ -98,7 +132,6 @@
       color:white;
       background:rgba(255,255,255,0.05);
       border:1px solid rgba(255,255,255,0.1);
-      transition:0.3s;
     }
 
     .btn:hover{
@@ -106,10 +139,37 @@
       background:rgba(255,255,255,0.1);
     }
 
+    .discord-card{
+      margin-top:20px;
+      padding:15px;
+      border-radius:12px;
+      background:#2b2d31;
+      text-align:left;
+    }
+
+    .discord-header{
+      display:flex;
+      align-items:center;
+    }
+
+    .discord-avatar{
+      width:50px;height:50px;
+      border-radius:50%;
+      margin-right:10px;
+    }
+
+    .status{color:#23a55a;font-size:12px;}
+
   </style>
 </head>
 
 <body>
+
+<!-- LOADER -->
+<div id="loader">
+  <div class="loader-circle"></div>
+  <h2>theycallmeazura</h2>
+</div>
 
 <canvas id="particles"></canvas>
 
@@ -120,106 +180,86 @@
   <a href="#email">Email</a>
   <a href="#discord">Discord</a>
   <a href="#instagram">Instagram</a>
-  <a href="#contact">Contact</a>
 </div>
 
-<!-- HOME -->
 <section id="home">
   <div class="card">
     <h1>theycallmeazura 🚀</h1>
-    <div class="tagline">Discord Community Manager</div>
-
-    <div id="typing"></div>
-
-    <div class="desc">
-      Helping creators build and manage strong communities.
-    </div>
+    <div class="typing" data-text="Managing communities. Growing servers. Building brands."></div>
   </div>
 </section>
 
-<!-- ABOUT -->
 <section id="about">
   <div class="card">
-    <h1>About Me</h1>
-    <div class="desc">
-      I manage Discord communities professionally.  
-      From moderation to engagement and server growth, I help creators build strong and active communities.
-    </div>
+    <h1>About</h1>
+    <div class="typing" data-text="Professional Discord manager focused on growth."></div>
   </div>
 </section>
 
-<!-- SERVICES -->
 <section id="services">
   <div class="card">
     <h1>Services</h1>
-    <div class="desc">
-      • Server Setup & Design  
-      • Moderation Management  
-      • Community Growth Strategy  
-      • Engagement Boosting  
-    </div>
+    <div class="typing" data-text="Setup. Moderation. Growth. Engagement."></div>
   </div>
 </section>
 
-<!-- EMAIL -->
 <section id="email">
   <div class="card">
     <h1>Email</h1>
-    <div class="desc">
-      For business inquiries and serious work only.  
-      Expect replies only when necessary.
-    </div>
-    <a class="btn" href="mailto:azura7636@gmail.com">azura7636@gmail.com</a>
+    <div class="typing" data-text="For serious business only."></div>
+    <a class="btn" href="mailto:azura7636@gmail.com">Send Email</a>
   </div>
 </section>
 
-<!-- DISCORD -->
 <section id="discord">
   <div class="card">
     <h1>Discord</h1>
-    <div class="desc">
-      Username: <strong>theycallmeazura</strong><br>
-      Not always active on DMs.
+    <div class="typing" data-text="Reach me on Discord."></div>
+
+    <div class="discord-card">
+      <div class="discord-header">
+        <img class="discord-avatar" src="https://cdn.discordapp.com/avatars/1476420907718152204/e8133febacee9df2d85280cd729a4094.webp?size=2048">
+        <div>
+          <strong>theycallmeazura</strong><br>
+          <span class="status">● Loading...</span>
+        </div>
+      </div>
     </div>
+
   </div>
 </section>
 
-<!-- INSTAGRAM -->
 <section id="instagram">
   <div class="card">
     <h1>Instagram</h1>
-    <div class="desc">
-      Follow for updates, content and networking.
-    </div>
-    <a class="btn" href="https://instagram.com/theycallmeazura" target="_blank">
-      @theycallmeazura
-    </a>
-  </div>
-</section>
-
-<!-- CONTACT -->
-<section id="contact">
-  <div class="card">
-    <h1>Contact</h1>
-    <div class="desc">
-      Best way to reach me is via email.  
-      Keep messages short and professional.
-    </div>
+    <div class="typing" data-text="Follow for updates."></div>
+    <a class="btn" href="https://instagram.com/theycallmeazura" target="_blank">@theycallmeazura</a>
   </div>
 </section>
 
 <script>
+  // LOADER
+  window.addEventListener("load",()=>{
+    setTimeout(()=>{
+      const loader=document.getElementById("loader");
+      loader.style.opacity="0";
+      setTimeout(()=>loader.style.display="none",600);
+    },1000);
+  });
+
   // TYPING
-  const text="Managing communities. Growing servers. Building brands.";
-  let i=0;
-  function type(){
-    if(i<text.length){
-      document.getElementById("typing").innerHTML+=text[i];
-      i++;
-      setTimeout(type,40);
+  document.querySelectorAll(".typing").forEach(el=>{
+    let text=el.getAttribute("data-text");
+    let i=0;
+    function type(){
+      if(i<text.length){
+        el.innerHTML+=text[i];
+        i++;
+        setTimeout(type,30);
+      }
     }
-  }
-  type();
+    type();
+  });
 
   // PARTICLES
   const canvas=document.getElementById("particles");
@@ -228,7 +268,7 @@
   canvas.height=innerHeight;
 
   let particles=[];
-  for(let i=0;i<60;i++){
+  for(let i=0;i<70;i++){
     particles.push({
       x:Math.random()*canvas.width,
       y:Math.random()*canvas.height,
@@ -257,13 +297,48 @@
   function show(){
     let y=scrollY;
     sections.forEach(s=>{
-      if(y > s.offsetTop - window.innerHeight/1.3){
+      if(y > s.offsetTop - window.innerHeight/1.2){
         s.classList.add("active");
       }
     });
   }
   addEventListener("scroll",show);
   addEventListener("load",show);
+
+  // CURSOR GLOW
+  const glow=document.createElement("div");
+  glow.style.position="fixed";
+  glow.style.width="120px";
+  glow.style.height="120px";
+  glow.style.borderRadius="50%";
+  glow.style.pointerEvents="none";
+  glow.style.background="radial-gradient(circle, rgba(0,150,255,0.3), transparent)";
+  glow.style.zIndex="9999";
+  glow.style.transform="translate(-50%,-50%)";
+  document.body.appendChild(glow);
+
+  document.addEventListener("mousemove",e=>{
+    glow.style.left=e.clientX+"px";
+    glow.style.top=e.clientY+"px";
+  });
+
+  // DISCORD API
+  const userId="1476420907718152204";
+  async function fetchDiscord(){
+    try{
+      let res=await fetch(`https://api.lanyard.rest/v1/users/${userId}`);
+      let data=await res.json();
+      let statusEl=document.querySelector(".status");
+
+      if(data.success){
+        let s=data.data.discord_status;
+        statusEl.innerHTML="● "+s.toUpperCase();
+      }
+    }catch{}
+  }
+
+  fetchDiscord();
+  setInterval(fetchDiscord,10000);
 </script>
 
 </body>
