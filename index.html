@@ -22,37 +22,6 @@
       z-index:-1;
     }
 
-    /* LOADER */
-    #loader{
-      position:fixed;
-      width:100%;
-      height:100%;
-      background:#000;
-      display:flex;
-      justify-content:center;
-      align-items:center;
-      z-index:99999;
-      flex-direction:column;
-      transition:opacity 0.6s;
-    }
-
-    .loader-circle{
-      width:60px;height:60px;
-      border:4px solid rgba(255,255,255,0.1);
-      border-top:4px solid #00c6ff;
-      border-radius:50%;
-      animation:spin 1s linear infinite;
-    }
-
-    @keyframes spin{to{transform:rotate(360deg);}}
-
-    #loader h2{
-      margin-top:15px;
-      background:linear-gradient(90deg,#00c6ff,#ff0055);
-      -webkit-background-clip:text;
-      -webkit-text-fill-color:transparent;
-    }
-
     /* NAV */
     .nav{
       position:fixed;
@@ -65,7 +34,6 @@
       color:#aaa;
       margin-left:15px;
       text-decoration:none;
-      transition:0.3s;
     }
 
     .nav a:hover{color:#fff;}
@@ -87,7 +55,6 @@
     }
 
     .card{
-      position:relative;
       background:rgba(255,255,255,0.05);
       backdrop-filter:blur(20px);
       border-radius:20px;
@@ -96,35 +63,14 @@
       width:100%;
       text-align:center;
       border:1px solid rgba(255,255,255,0.1);
-      overflow:hidden;
     }
-
-    /* SPOTLIGHT */
-    .card::before{
-      content:"";
-      position:absolute;
-      width:200px;height:200px;
-      background:radial-gradient(circle, rgba(0,150,255,0.25), transparent);
-      top:var(--y);
-      left:var(--x);
-      transform:translate(-50%,-50%);
-      pointer-events:none;
-      opacity:0;
-      transition:0.2s;
-    }
-
-    .card:hover::before{opacity:1;}
 
     h1{
-      font-size:36px;
-      background:linear-gradient(90deg,#00c6ff,#ff0055,#00c6ff);
-      background-size:200%;
+      font-size:32px;
+      background:linear-gradient(90deg,#00c6ff,#ff0055);
       -webkit-background-clip:text;
       -webkit-text-fill-color:transparent;
-      animation:gradient 5s linear infinite;
     }
-
-    @keyframes gradient{to{background-position:200%;}}
 
     .typing{
       margin-top:10px;
@@ -145,19 +91,44 @@
       color:white;
       background:rgba(255,255,255,0.05);
       border:1px solid rgba(255,255,255,0.1);
+      cursor:pointer;
     }
 
-    .btn:hover{
-      transform:scale(1.05);
-      background:rgba(255,255,255,0.1);
+    input, textarea{
+      width:100%;
+      padding:10px;
+      margin:10px 0;
+      border-radius:8px;
+      border:none;
+      outline:none;
+      background:#111;
+      color:white;
     }
 
-    .visitors{
-      position:fixed;
-      bottom:10px;
-      left:10px;
-      font-size:12px;
-      color:#888;
+    /* FAQ */
+    .faq-item{
+      text-align:left;
+      margin-top:10px;
+      cursor:pointer;
+    }
+
+    .faq-question{
+      background:#111;
+      padding:10px;
+      border-radius:8px;
+    }
+
+    .faq-answer{
+      max-height:0;
+      overflow:hidden;
+      transition:0.4s;
+      color:#aaa;
+      padding:0 10px;
+    }
+
+    .faq-item.active .faq-answer{
+      max-height:100px;
+      padding:10px;
     }
 
   </style>
@@ -165,88 +136,69 @@
 
 <body>
 
-<!-- LOADER -->
-<div id="loader">
-  <div class="loader-circle"></div>
-  <h2>theycallmeazura</h2>
-</div>
-
 <canvas id="particles"></canvas>
 
 <div class="nav">
   <a href="#home">Home</a>
   <a href="#about">About</a>
-  <a href="#portfolio">Portfolio</a>
-  <a href="#email">Email</a>
-  <a href="#discord">Discord</a>
-  <a href="#instagram">Instagram</a>
+  <a href="#contact">Contact</a>
+  <a href="#faq">FAQ</a>
 </div>
 
+<!-- HOME -->
 <section id="home">
   <div class="card">
     <h1>theycallmeazura 🚀</h1>
-    <div class="typing" data-text='["Managing communities","Growing servers","Building brands"]'></div>
+    <div class="typing" data-text='["Managing communities","Growing servers"]'></div>
   </div>
 </section>
 
+<!-- ABOUT -->
 <section id="about">
   <div class="card">
     <h1>About</h1>
-    <div class="typing" data-text='["Professional manager","Growth focused","Community builder"]'></div>
+    <div class="desc">Professional Discord community manager.</div>
   </div>
 </section>
 
-<section id="portfolio">
+<!-- CONTACT -->
+<section id="contact">
   <div class="card">
-    <h1>Portfolio</h1>
-    <div class="typing" data-text='["Worked with creators","Managed servers","Built communities"]'></div>
-    <div class="desc">
-      • Managed Discord communities<br>
-      • Helped creators grow<br>
-      • Built engagement systems
+    <h1>Contact Me</h1>
+
+    <input type="text" id="name" placeholder="Your Name">
+    <input type="email" id="email" placeholder="Your Email">
+    <textarea id="message" placeholder="Your Message"></textarea>
+
+    <div class="btn" onclick="sendMail()">Send Message</div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq">
+  <div class="card">
+    <h1>FAQ</h1>
+
+    <div class="faq-item">
+      <div class="faq-question">How fast do you reply?</div>
+      <div class="faq-answer">Usually within 24 hours.</div>
     </div>
+
+    <div class="faq-item">
+      <div class="faq-question">Do you manage small servers?</div>
+      <div class="faq-answer">Yes, depending on requirements.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question">How to contact?</div>
+      <div class="faq-answer">Use the contact form or email.</div>
+    </div>
+
   </div>
 </section>
-
-<section id="email">
-  <div class="card">
-    <h1>Email</h1>
-    <div class="typing" data-text='["Business inquiries only","Professional contact","Serious work only"]'></div>
-    <a class="btn" href="mailto:azura7636@gmail.com">Send Email</a>
-  </div>
-</section>
-
-<section id="discord">
-  <div class="card">
-    <h1>Discord</h1>
-    <div class="typing" data-text='["Reach me here","Not always active","DM wisely"]'></div>
-    <div class="desc">theycallmeazura</div>
-  </div>
-</section>
-
-<section id="instagram">
-  <div class="card">
-    <h1>Instagram</h1>
-    <div class="typing" data-text='["Follow updates","Networking","Content drops"]'></div>
-    <a class="btn" href="https://instagram.com/theycallmeazura">@theycallmeazura</a>
-  </div>
-</section>
-
-<div class="visitors">Visitors: <span id="count">0</span></div>
 
 <script>
-  // SAFE LOADER
-  window.onload = () => {
-    setTimeout(() => {
-      const loader = document.getElementById("loader");
-      if(loader){
-        loader.style.opacity = "0";
-        setTimeout(() => loader.style.display = "none", 600);
-      }
-    }, 1000);
-  };
-
-  // SMART TYPING (SLOW + HOLD)
+  // TYPING
   document.querySelectorAll(".typing").forEach(el=>{
     let texts=JSON.parse(el.getAttribute("data-text"));
     let i=0,j=0,cur="",del=false;
@@ -257,9 +209,9 @@
         el.innerHTML=cur;
         setTimeout(type,70);
       }
-      else if(!del && j===texts[i].length){
+      else if(!del){
         del=true;
-        setTimeout(type,5000);
+        setTimeout(type,4000);
       }
       else if(del && j>0){
         cur=cur.slice(0,--j);
@@ -279,8 +231,12 @@
   const c=document.getElementById("particles");
   const ctx=c.getContext("2d");
   c.width=innerWidth;c.height=innerHeight;
+
   let p=[];
-  for(let i=0;i<60;i++) p.push({x:Math.random()*c.width,y:Math.random()*c.height,r:Math.random()*2,dx:Math.random()-0.5,dy:Math.random()-0.5});
+  for(let i=0;i<50;i++){
+    p.push({x:Math.random()*c.width,y:Math.random()*c.height,r:Math.random()*2});
+  }
+
   function draw(){
     ctx.clearRect(0,0,c.width,c.height);
     p.forEach(a=>{
@@ -288,7 +244,6 @@
       ctx.arc(a.x,a.y,a.r,0,6.28);
       ctx.fillStyle="white";
       ctx.fill();
-      a.x+=a.dx;a.y+=a.dy;
     });
     requestAnimationFrame(draw);
   }
@@ -307,30 +262,22 @@
   addEventListener("scroll",show);
   addEventListener("load",show);
 
-  // SPOTLIGHT
-  document.querySelectorAll(".card").forEach(card=>{
-    card.addEventListener("mousemove",e=>{
-      const rect=card.getBoundingClientRect();
-      card.style.setProperty("--x", e.clientX-rect.left+"px");
-      card.style.setProperty("--y", e.clientY-rect.top+"px");
+  // CONTACT MAIL
+  function sendMail(){
+    let name=document.getElementById("name").value;
+    let email=document.getElementById("email").value;
+    let msg=document.getElementById("message").value;
+
+    window.location.href=`mailto:azura7636@gmail.com?subject=Contact from ${name}&body=${msg} (${email})`;
+  }
+
+  // FAQ TOGGLE
+  document.querySelectorAll(".faq-item").forEach(item=>{
+    item.addEventListener("click",()=>{
+      item.classList.toggle("active");
     });
   });
 
-  // SAFE VISITOR COUNTER
-  let count = localStorage.getItem("azura_visits");
-
-  if(!count){
-    count = 1;
-  } else {
-    count = parseInt(count) + 1;
-  }
-
-  localStorage.setItem("azura_visits", count);
-
-  const counterEl = document.getElementById("count");
-  if(counterEl){
-    counterEl.innerText = count;
-  }
 </script>
 
 </body>
