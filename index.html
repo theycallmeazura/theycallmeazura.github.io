@@ -33,25 +33,21 @@
       align-items:center;
       z-index:99999;
       flex-direction:column;
-      transition:opacity 0.6s ease;
+      transition:opacity 0.6s;
     }
 
     .loader-circle{
-      width:60px;
-      height:60px;
+      width:60px;height:60px;
       border:4px solid rgba(255,255,255,0.1);
       border-top:4px solid #00c6ff;
       border-radius:50%;
       animation:spin 1s linear infinite;
     }
 
-    @keyframes spin{
-      to{transform:rotate(360deg);}
-    }
+    @keyframes spin{to{transform:rotate(360deg);}}
 
     #loader h2{
       margin-top:15px;
-      font-size:20px;
       background:linear-gradient(90deg,#00c6ff,#ff0055);
       -webkit-background-clip:text;
       -webkit-text-fill-color:transparent;
@@ -69,10 +65,12 @@
       color:#aaa;
       margin-left:15px;
       text-decoration:none;
+      transition:0.3s;
     }
 
     .nav a:hover{color:#fff;}
 
+    /* SECTIONS */
     section{
       min-height:100vh;
       display:flex;
@@ -89,7 +87,9 @@
       transform:translateY(0);
     }
 
+    /* CARD */
     .card{
+      position:relative;
       background:rgba(255,255,255,0.05);
       backdrop-filter:blur(20px);
       border-radius:20px;
@@ -98,7 +98,24 @@
       width:100%;
       text-align:center;
       border:1px solid rgba(255,255,255,0.1);
+      overflow:hidden;
     }
+
+    /* SPOTLIGHT */
+    .card::before{
+      content:"";
+      position:absolute;
+      width:200px;height:200px;
+      background:radial-gradient(circle, rgba(0,150,255,0.25), transparent);
+      top:var(--y);
+      left:var(--x);
+      transform:translate(-50%,-50%);
+      pointer-events:none;
+      opacity:0;
+      transition:0.2s;
+    }
+
+    .card:hover::before{opacity:1;}
 
     h1{
       font-size:36px;
@@ -109,15 +126,13 @@
       animation:gradient 5s linear infinite;
     }
 
-    @keyframes gradient{
-      to{background-position:200%;}
-    }
+    @keyframes gradient{to{background-position:200%;}}
 
     .typing{
       margin-top:10px;
       color:#888;
       font-size:13px;
-      height:18px;
+      height:20px;
     }
 
     .desc{margin-top:15px;color:#bbb;}
@@ -139,33 +154,20 @@
       background:rgba(255,255,255,0.1);
     }
 
-    .discord-card{
-      margin-top:20px;
-      padding:15px;
-      border-radius:12px;
-      background:#2b2d31;
-      text-align:left;
+    /* VISITOR */
+    .visitors{
+      position:fixed;
+      bottom:10px;
+      left:10px;
+      font-size:12px;
+      color:#888;
     }
-
-    .discord-header{
-      display:flex;
-      align-items:center;
-    }
-
-    .discord-avatar{
-      width:50px;height:50px;
-      border-radius:50%;
-      margin-right:10px;
-    }
-
-    .status{color:#23a55a;font-size:12px;}
 
   </style>
 </head>
 
 <body>
 
-<!-- LOADER -->
 <div id="loader">
   <div class="loader-circle"></div>
   <h2>theycallmeazura</h2>
@@ -176,169 +178,148 @@
 <div class="nav">
   <a href="#home">Home</a>
   <a href="#about">About</a>
-  <a href="#services">Services</a>
+  <a href="#portfolio">Portfolio</a>
   <a href="#email">Email</a>
   <a href="#discord">Discord</a>
   <a href="#instagram">Instagram</a>
 </div>
 
+<!-- HOME -->
 <section id="home">
   <div class="card">
     <h1>theycallmeazura 🚀</h1>
-    <div class="typing" data-text="Managing communities. Growing servers. Building brands."></div>
+    <div class="typing" data-text='["Managing communities","Growing servers","Building brands"]'></div>
   </div>
 </section>
 
+<!-- ABOUT -->
 <section id="about">
   <div class="card">
     <h1>About</h1>
-    <div class="typing" data-text="Professional Discord manager focused on growth."></div>
+    <div class="typing" data-text='["Professional manager","Growth focused","Community builder"]'></div>
   </div>
 </section>
 
-<section id="services">
+<!-- PORTFOLIO -->
+<section id="portfolio">
   <div class="card">
-    <h1>Services</h1>
-    <div class="typing" data-text="Setup. Moderation. Growth. Engagement."></div>
+    <h1>Portfolio</h1>
+    <div class="typing" data-text='["Worked with creators","Managed servers","Built communities"]'></div>
+    <div class="desc">
+      • Managed multiple Discord communities<br>
+      • Helped creators grow audience<br>
+      • Built engagement strategies
+    </div>
   </div>
 </section>
 
+<!-- EMAIL -->
 <section id="email">
   <div class="card">
     <h1>Email</h1>
-    <div class="typing" data-text="For serious business only."></div>
+    <div class="typing" data-text='["Business inquiries only","Professional contact","Serious work only"]'></div>
     <a class="btn" href="mailto:azura7636@gmail.com">Send Email</a>
   </div>
 </section>
 
+<!-- DISCORD -->
 <section id="discord">
   <div class="card">
     <h1>Discord</h1>
-    <div class="typing" data-text="Reach me on Discord."></div>
-
-    <div class="discord-card">
-      <div class="discord-header">
-        <img class="discord-avatar" src="https://cdn.discordapp.com/avatars/1476420907718152204/e8133febacee9df2d85280cd729a4094.webp?size=2048">
-        <div>
-          <strong>theycallmeazura</strong><br>
-          <span class="status">● Loading...</span>
-        </div>
-      </div>
-    </div>
-
+    <div class="typing" data-text='["Reach me here","Not always active","DM wisely"]'></div>
+    <div class="desc">theycallmeazura</div>
   </div>
 </section>
 
+<!-- INSTAGRAM -->
 <section id="instagram">
   <div class="card">
     <h1>Instagram</h1>
-    <div class="typing" data-text="Follow for updates."></div>
-    <a class="btn" href="https://instagram.com/theycallmeazura" target="_blank">@theycallmeazura</a>
+    <div class="typing" data-text='["Follow updates","Networking","Content drops"]'></div>
+    <a class="btn" href="https://instagram.com/theycallmeazura">@theycallmeazura</a>
   </div>
 </section>
 
+<div class="visitors">Visitors: <span id="count">0</span></div>
+
 <script>
   // LOADER
-  window.addEventListener("load",()=>{
+  window.onload=()=>{
     setTimeout(()=>{
-      const loader=document.getElementById("loader");
       loader.style.opacity="0";
       setTimeout(()=>loader.style.display="none",600);
     },1000);
-  });
+  };
 
-  // TYPING
+  // SMART TYPING
   document.querySelectorAll(".typing").forEach(el=>{
-    let text=el.getAttribute("data-text");
-    let i=0;
+    let texts=JSON.parse(el.getAttribute("data-text"));
+    let i=0,j=0,cur="",del=false;
+
     function type(){
-      if(i<text.length){
-        el.innerHTML+=text[i];
-        i++;
-        setTimeout(type,30);
+      if(!del && j<texts[i].length){
+        cur+=texts[i][j++];
+      } else if(del && j>0){
+        cur=cur.slice(0,--j);
       }
+
+      el.innerHTML=cur;
+
+      if(j===texts[i].length) del=true;
+      if(j===0 && del){
+        del=false;
+        i=(i+1)%texts.length;
+      }
+
+      setTimeout(type,del?40:80);
     }
     type();
   });
 
   // PARTICLES
-  const canvas=document.getElementById("particles");
-  const ctx=canvas.getContext("2d");
-  canvas.width=innerWidth;
-  canvas.height=innerHeight;
-
-  let particles=[];
-  for(let i=0;i<70;i++){
-    particles.push({
-      x:Math.random()*canvas.width,
-      y:Math.random()*canvas.height,
-      r:Math.random()*2,
-      dx:Math.random()-0.5,
-      dy:Math.random()-0.5
-    });
-  }
-
+  const c=document.getElementById("particles");
+  const ctx=c.getContext("2d");
+  c.width=innerWidth;c.height=innerHeight;
+  let p=[];
+  for(let i=0;i<60;i++) p.push({x:Math.random()*c.width,y:Math.random()*c.height,r:Math.random()*2,dx:Math.random()-0.5,dy:Math.random()-0.5});
   function draw(){
-    ctx.clearRect(0,0,canvas.width,canvas.height);
-    particles.forEach(p=>{
+    ctx.clearRect(0,0,c.width,c.height);
+    p.forEach(a=>{
       ctx.beginPath();
-      ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+      ctx.arc(a.x,a.y,a.r,0,6.28);
       ctx.fillStyle="white";
       ctx.fill();
-      p.x+=p.dx;
-      p.y+=p.dy;
+      a.x+=a.dx;a.y+=a.dy;
     });
     requestAnimationFrame(draw);
   }
   draw();
 
-  // SCROLL
-  const sections=document.querySelectorAll("section");
+  // SCROLL ANIMATION
+  const sec=document.querySelectorAll("section");
   function show(){
     let y=scrollY;
-    sections.forEach(s=>{
-      if(y > s.offsetTop - window.innerHeight/1.2){
-        s.classList.add("active");
-      }
+    sec.forEach(s=>{
+      if(y>s.offsetTop-window.innerHeight/1.2) s.classList.add("active");
     });
   }
   addEventListener("scroll",show);
   addEventListener("load",show);
 
-  // CURSOR GLOW
-  const glow=document.createElement("div");
-  glow.style.position="fixed";
-  glow.style.width="120px";
-  glow.style.height="120px";
-  glow.style.borderRadius="50%";
-  glow.style.pointerEvents="none";
-  glow.style.background="radial-gradient(circle, rgba(0,150,255,0.3), transparent)";
-  glow.style.zIndex="9999";
-  glow.style.transform="translate(-50%,-50%)";
-  document.body.appendChild(glow);
-
-  document.addEventListener("mousemove",e=>{
-    glow.style.left=e.clientX+"px";
-    glow.style.top=e.clientY+"px";
+  // SPOTLIGHT
+  document.querySelectorAll(".card").forEach(card=>{
+    card.addEventListener("mousemove",e=>{
+      const rect=card.getBoundingClientRect();
+      card.style.setProperty("--x", e.clientX-rect.left+"px");
+      card.style.setProperty("--y", e.clientY-rect.top+"px");
+    });
   });
 
-  // DISCORD API
-  const userId="1476420907718152204";
-  async function fetchDiscord(){
-    try{
-      let res=await fetch(`https://api.lanyard.rest/v1/users/${userId}`);
-      let data=await res.json();
-      let statusEl=document.querySelector(".status");
-
-      if(data.success){
-        let s=data.data.discord_status;
-        statusEl.innerHTML="● "+s.toUpperCase();
-      }
-    }catch{}
-  }
-
-  fetchDiscord();
-  setInterval(fetchDiscord,10000);
+  // VISITOR COUNTER
+  let count=localStorage.getItem("visitors")||0;
+  count++;
+  localStorage.setItem("visitors",count);
+  document.getElementById("count").innerText=count;
 </script>
 
 </body>
