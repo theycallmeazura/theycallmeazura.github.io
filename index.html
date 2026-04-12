@@ -1,247 +1,3 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <title>Azura</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <style>
-    *{margin:0;padding:0;box-sizing:border-box;}
-
-    body{
-      font-family:'Segoe UI',sans-serif;
-      background:#000;
-      color:white;
-      overflow-x:hidden;
-      scroll-behavior:smooth;
-    }
-
-    canvas{
-      position:fixed;
-      top:0;
-      left:0;
-      z-index:-1;
-    }
-
-    /* LOADER */
-    #loader{
-      position:fixed;
-      width:100%;
-      height:100%;
-      background:#000;
-      display:flex;
-      justify-content:center;
-      align-items:center;
-      z-index:99999;
-      flex-direction:column;
-      transition:opacity 0.6s;
-    }
-
-    .loader-circle{
-      width:60px;height:60px;
-      border:4px solid rgba(255,255,255,0.1);
-      border-top:4px solid #00c6ff;
-      border-radius:50%;
-      animation:spin 1s linear infinite;
-    }
-
-    @keyframes spin{to{transform:rotate(360deg);}}
-
-    #loader h2{
-      margin-top:15px;
-      background:linear-gradient(90deg,#00c6ff,#ff0055);
-      -webkit-background-clip:text;
-      -webkit-text-fill-color:transparent;
-    }
-
-    /* NAV */
-    .nav{
-      position:fixed;
-      top:20px;
-      right:30px;
-      z-index:100;
-    }
-
-    .nav a{
-      color:#aaa;
-      margin-left:15px;
-      text-decoration:none;
-      transition:0.3s;
-    }
-
-    .nav a:hover{color:#fff;}
-
-    /* SECTIONS */
-    section{
-      min-height:100vh;
-      display:flex;
-      justify-content:center;
-      align-items:center;
-      padding:40px;
-      opacity:0;
-      transform:translateY(60px);
-      transition:1s ease;
-    }
-
-    section.active{
-      opacity:1;
-      transform:translateY(0);
-    }
-
-    /* CARD */
-    .card{
-      position:relative;
-      background:rgba(255,255,255,0.05);
-      backdrop-filter:blur(20px);
-      border-radius:20px;
-      padding:40px;
-      max-width:500px;
-      width:100%;
-      text-align:center;
-      border:1px solid rgba(255,255,255,0.1);
-      overflow:hidden;
-    }
-
-    /* SPOTLIGHT */
-    .card::before{
-      content:"";
-      position:absolute;
-      width:200px;height:200px;
-      background:radial-gradient(circle, rgba(0,150,255,0.25), transparent);
-      top:var(--y);
-      left:var(--x);
-      transform:translate(-50%,-50%);
-      pointer-events:none;
-      opacity:0;
-      transition:0.2s;
-    }
-
-    .card:hover::before{opacity:1;}
-
-    h1{
-      font-size:36px;
-      background:linear-gradient(90deg,#00c6ff,#ff0055,#00c6ff);
-      background-size:200%;
-      -webkit-background-clip:text;
-      -webkit-text-fill-color:transparent;
-      animation:gradient 5s linear infinite;
-    }
-
-    @keyframes gradient{to{background-position:200%;}}
-
-    .typing{
-      margin-top:10px;
-      color:#888;
-      font-size:13px;
-      height:20px;
-    }
-
-    .desc{margin-top:15px;color:#bbb;}
-
-    .btn{
-      display:block;
-      margin:12px auto;
-      padding:12px;
-      border-radius:10px;
-      text-decoration:none;
-      width:80%;
-      color:white;
-      background:rgba(255,255,255,0.05);
-      border:1px solid rgba(255,255,255,0.1);
-    }
-
-    .btn:hover{
-      transform:scale(1.05);
-      background:rgba(255,255,255,0.1);
-    }
-
-    /* VISITOR */
-    .visitors{
-      position:fixed;
-      bottom:10px;
-      left:10px;
-      font-size:12px;
-      color:#888;
-    }
-
-  </style>
-</head>
-
-<body>
-
-<div id="loader">
-  <div class="loader-circle"></div>
-  <h2>theycallmeazura</h2>
-</div>
-
-<canvas id="particles"></canvas>
-
-<div class="nav">
-  <a href="#home">Home</a>
-  <a href="#about">About</a>
-  <a href="#portfolio">Portfolio</a>
-  <a href="#email">Email</a>
-  <a href="#discord">Discord</a>
-  <a href="#instagram">Instagram</a>
-</div>
-
-<!-- HOME -->
-<section id="home">
-  <div class="card">
-    <h1>theycallmeazura 🚀</h1>
-    <div class="typing" data-text='["Managing communities","Growing servers","Building brands"]'></div>
-  </div>
-</section>
-
-<!-- ABOUT -->
-<section id="about">
-  <div class="card">
-    <h1>About</h1>
-    <div class="typing" data-text='["Professional manager","Growth focused","Community builder"]'></div>
-  </div>
-</section>
-
-<!-- PORTFOLIO -->
-<section id="portfolio">
-  <div class="card">
-    <h1>Portfolio</h1>
-    <div class="typing" data-text='["Worked with creators","Managed servers","Built communities"]'></div>
-    <div class="desc">
-      • Managed multiple Discord communities<br>
-      • Helped creators grow audience<br>
-      • Built engagement strategies
-    </div>
-  </div>
-</section>
-
-<!-- EMAIL -->
-<section id="email">
-  <div class="card">
-    <h1>Email</h1>
-    <div class="typing" data-text='["Business inquiries only","Professional contact","Serious work only"]'></div>
-    <a class="btn" href="mailto:azura7636@gmail.com">Send Email</a>
-  </div>
-</section>
-
-<!-- DISCORD -->
-<section id="discord">
-  <div class="card">
-    <h1>Discord</h1>
-    <div class="typing" data-text='["Reach me here","Not always active","DM wisely"]'></div>
-    <div class="desc">theycallmeazura</div>
-  </div>
-</section>
-
-<!-- INSTAGRAM -->
-<section id="instagram">
-  <div class="card">
-    <h1>Instagram</h1>
-    <div class="typing" data-text='["Follow updates","Networking","Content drops"]'></div>
-    <a class="btn" href="https://instagram.com/theycallmeazura">@theycallmeazura</a>
-  </div>
-</section>
-
-<div class="visitors">Visitors: <span id="count">0</span></div>
-
 <script>
   // LOADER
   window.onload=()=>{
@@ -251,7 +7,7 @@
     },1000);
   };
 
-  // SMART TYPING
+  // ===== SMART TYPING (SLOW + HOLD) =====
   document.querySelectorAll(".typing").forEach(el=>{
     let texts=JSON.parse(el.getAttribute("data-text"));
     let i=0,j=0,cur="",del=false;
@@ -259,19 +15,23 @@
     function type(){
       if(!del && j<texts[i].length){
         cur+=texts[i][j++];
-      } else if(del && j>0){
-        cur=cur.slice(0,--j);
+        el.innerHTML=cur;
+        setTimeout(type,70); // slower typing
       }
-
-      el.innerHTML=cur;
-
-      if(j===texts[i].length) del=true;
-      if(j===0 && del){
+      else if(!del && j===texts[i].length){
+        del=true;
+        setTimeout(type,5000); // HOLD 5 sec
+      }
+      else if(del && j>0){
+        cur=cur.slice(0,--j);
+        el.innerHTML=cur;
+        setTimeout(type,30); // delete speed
+      }
+      else{
         del=false;
         i=(i+1)%texts.length;
+        setTimeout(type,500);
       }
-
-      setTimeout(type,del?40:80);
     }
     type();
   });
@@ -295,7 +55,7 @@
   }
   draw();
 
-  // SCROLL ANIMATION
+  // SCROLL
   const sec=document.querySelectorAll("section");
   function show(){
     let y=scrollY;
@@ -315,12 +75,16 @@
     });
   });
 
-  // VISITOR COUNTER
-  let count=localStorage.getItem("visitors")||0;
-  count++;
-  localStorage.setItem("visitors",count);
-  document.getElementById("count").innerText=count;
-</script>
+  // ===== REAL VISIBLE COUNTER =====
+  let count = localStorage.getItem("azura_visits");
 
-</body>
-</html>
+  if(!count){
+    count = 1;
+  } else {
+    count = parseInt(count) + 1;
+  }
+
+  localStorage.setItem("azura_visits", count);
+
+  document.getElementById("count").innerText = count;
+</script>
