@@ -9,51 +9,58 @@
 
     body{
       font-family:'Segoe UI',sans-serif;
-      background:#000;
-      color:#fff;
-      overflow:hidden;
+      background: radial-gradient(circle at center, #0a0a0a, #000);
+      color:white;
+      scroll-behavior:smooth;
+      overflow-x:hidden;
     }
 
-    /* BACKGROUND GLOW */
-    body::before, body::after{
-      content:"";
+    /* NAV */
+    .nav{
       position:fixed;
-      width:600px;
-      height:600px;
-      filter:blur(120px);
-      z-index:-1;
-      animation:move 12s infinite alternate;
+      top:20px;
+      right:30px;
+      z-index:100;
     }
 
-    body::before{
-      background:radial-gradient(circle,#00c6ff,transparent);
-      top:-100px;left:-100px;
+    .nav a{
+      color:#aaa;
+      margin-left:15px;
+      text-decoration:none;
+      font-size:14px;
+      transition:0.3s;
     }
 
-    body::after{
-      background:radial-gradient(circle,#ff0055,transparent);
-      bottom:-100px;right:-100px;
+    .nav a:hover{color:#fff;}
+
+    /* SECTION */
+    section{
+      min-height:100vh;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      padding:40px;
+      opacity:0;
+      transform:translateY(40px);
+      transition:0.8s ease;
     }
 
-    @keyframes move{
-      from{transform:translate(0,0);}
-      to{transform:translate(120px,60px);}
+    section.active{
+      opacity:1;
+      transform:translateY(0);
     }
 
     /* CARD */
     .card{
-      position:absolute;
-      top:50%;left:50%;
-      transform:translate(-50%,-50%);
-      backdrop-filter:blur(20px);
       background:rgba(255,255,255,0.05);
-      padding:40px;
+      backdrop-filter:blur(20px);
       border-radius:20px;
-      width:90%;
+      padding:40px;
       max-width:500px;
+      width:100%;
       text-align:center;
       border:1px solid rgba(255,255,255,0.1);
-      box-shadow:0 0 50px rgba(0,150,255,0.1);
+      box-shadow:0 0 30px rgba(0,150,255,0.08);
     }
 
     /* NAME */
@@ -63,27 +70,22 @@
       background-size:200%;
       -webkit-background-clip:text;
       -webkit-text-fill-color:transparent;
-      animation:gradientMove 5s linear infinite;
+      animation:gradient 5s linear infinite;
     }
 
-    @keyframes gradientMove{
-      0%{background-position:0%;}
-      100%{background-position:200%;}
+    @keyframes gradient{
+      to{background-position:200%;}
     }
 
-    .tagline{color:#aaa;margin-top:5px;}
+    .tagline{color:#aaa;}
+    .desc{margin-top:15px;color:#bbb;font-size:14px;}
 
+    /* TYPING */
     #typing{
       margin-top:10px;
       color:#888;
       font-size:13px;
       height:18px;
-    }
-
-    .desc{
-      margin-top:15px;
-      color:#bbb;
-      font-size:14px;
     }
 
     /* DISCORD CARD */
@@ -108,12 +110,6 @@
 
     .status{color:#23a55a;font-size:12px;}
 
-    .bio{
-      margin-top:10px;
-      font-size:13px;
-      color:#ccc;
-    }
-
     /* BUTTONS */
     .btn{
       display:flex;
@@ -126,44 +122,16 @@
       text-decoration:none;
       width:80%;
       color:white;
-      font-size:14px;
-      position:relative;
-      overflow:hidden;
+      background:rgba(255,255,255,0.05);
+      border:1px solid rgba(255,255,255,0.1);
       transition:0.3s;
     }
 
     .btn svg{width:18px;height:18px;}
 
-    .email{
-      background:rgba(255,255,255,0.05);
-      box-shadow:0 0 15px rgba(255,255,255,0.2);
-    }
-
-    .discord{
-      background:rgba(88,101,242,0.2);
-      box-shadow:0 0 20px rgba(88,101,242,0.6);
-    }
-
-    .instagram{
-      background:rgba(255,0,100,0.2);
-      box-shadow:0 0 20px rgba(255,0,100,0.6);
-    }
-
     .btn:hover{
-      transform:scale(1.06);
-    }
-
-    /* RIPPLE */
-    .ripple{
-      position:absolute;
-      border-radius:50%;
-      background:rgba(255,255,255,0.4);
-      transform:scale(0);
-      animation:ripple 0.6s linear;
-    }
-
-    @keyframes ripple{
-      to{transform:scale(4);opacity:0;}
+      transform:scale(1.05);
+      background:rgba(255,255,255,0.1);
     }
 
   </style>
@@ -171,87 +139,113 @@
 
 <body>
 
-<div class="card">
-
-  <h1>theycallmeazura 🚀</h1>
-  <div class="tagline">Discord Community Manager</div>
-
-  <div id="typing"></div>
-
-  <div class="desc">
-    Helping creators build and manage strong communities.
-  </div>
-
-  <div class="discord-card">
-    <div class="discord-header">
-      <img class="discord-avatar" src="https://cdn.discordapp.com/avatars/1476420907718152204/e8133febacee9df2d85280cd729a4094.webp?size=2048">
-      <div>
-        <strong>theycallmeazura</strong><br>
-        <span class="status">● Online</span>
-      </div>
-    </div>
-
-    <div class="bio">
-      Only mail when required.<br>
-      Don't expect DM replies.
-    </div>
-  </div>
-
-  <!-- BUTTONS -->
-  <a class="btn email" href="mailto:azura7636@gmail.com">
-    <svg fill="white" viewBox="0 0 24 24"><path d="M2 4h20v16H2z"/><path d="M2 4l10 9 10-9"/></svg>
-    Email
-  </a>
-
-  <a class="btn discord" href="https://discord.gg/YOUR-LINK">
-    <svg fill="white" viewBox="0 0 24 24"><path d="M20 0H4C1.8 0 0 1.8 0 4v16c0 2.2 1.8 4 4 4h16l-1.2-4.2 2.9 2.7 2.7 2.5V4c0-2.2-1.8-4-4-4z"/></svg>
-    Discord
-  </a>
-
-  <a class="btn instagram" href="https://instagram.com/theycallmeazura" target="_blank">
-    <svg fill="white" viewBox="0 0 24 24"><path d="M7 2h10a5 5 0 015 5v10a5 5 0 01-5 5H7a5 5 0 01-5-5V7a5 5 0 015-5zm5 5a5 5 0 100 10 5 5 0 000-10zm6.5-.9a1.4 1.4 0 11-2.8 0 1.4 1.4 0 012.8 0z"/></svg>
-    Instagram
-  </a>
-
+<!-- NAV -->
+<div class="nav">
+  <a href="#home">Home</a>
+  <a href="#about">About</a>
+  <a href="#email">Email</a>
+  <a href="#discord">Discord</a>
+  <a href="#instagram">Instagram</a>
 </div>
 
+<!-- HOME -->
+<section id="home">
+  <div class="card">
+    <h1>theycallmeazura 🚀</h1>
+    <div class="tagline">Discord Community Manager</div>
+
+    <div id="typing"></div>
+
+    <div class="desc">
+      Helping creators build and manage communities.
+    </div>
+
+    <div class="discord-card">
+      <div class="discord-header">
+        <img class="discord-avatar" src="https://cdn.discordapp.com/avatars/1476420907718152204/e8133febacee9df2d85280cd729a4094.webp?size=2048">
+        <div>
+          <strong>theycallmeazura</strong><br>
+          <span class="status">● Online</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="card">
+    <h1>About Me</h1>
+    <div class="desc">
+      I manage Discord communities with focus on growth, moderation and engagement.
+    </div>
+  </div>
+</section>
+
+<!-- EMAIL -->
+<section id="email">
+  <div class="card">
+    <h1>Email</h1>
+    <a class="btn" href="mailto:azura7636@gmail.com">
+      <svg viewBox="0 0 24 24" fill="white">
+        <path d="M2 4h20v16H2z"/><path d="M2 4l10 9 10-9"/>
+      </svg>
+      Send Email
+    </a>
+  </div>
+</section>
+
+<!-- DISCORD -->
+<section id="discord">
+  <div class="card">
+    <h1>Discord</h1>
+    <a class="btn" href="#">
+      <svg viewBox="0 0 24 24" fill="white">
+        <path d="M20 0H4C1.8 0 0 1.8 0 4v16c0 2.2 1.8 4 4 4h16l-1.2-4.2 2.9 2.7 2.7 2.5V4c0-2.2-1.8-4-4-4z"/>
+      </svg>
+      Join Server
+    </a>
+  </div>
+</section>
+
+<!-- INSTAGRAM -->
+<section id="instagram">
+  <div class="card">
+    <h1>Instagram</h1>
+    <a class="btn" href="https://instagram.com/theycallmeazura" target="_blank">
+      <svg viewBox="0 0 24 24" fill="white">
+        <path d="M7 2h10a5 5 0 015 5v10a5 5 0 01-5 5H7a5 5 0 01-5-5V7a5 5 0 015-5zm5 5a5 5 0 100 10 5 5 0 000-10zm6.5-.9a1.4 1.4 0 11-2.8 0 1.4 1.4 0 012.8 0z"/>
+      </svg>
+      Open Instagram
+    </a>
+  </div>
+</section>
+
 <script>
-  // TYPING LOOP
-  const texts=[
-    "Managing communities.",
-    "Growing servers.",
-    "Building brands."
-  ];
-  let i=0,j=0,current="";
+  // TYPING
+  const text="Managing communities. Growing servers. Building brands.";
+  let i=0;
   function type(){
-    if(j<texts[i].length){
-      current+=texts[i][j];
-      document.getElementById("typing").innerHTML=current;
-      j++;
+    if(i<text.length){
+      document.getElementById("typing").innerHTML+=text[i];
+      i++;
       setTimeout(type,40);
-    }else{
-      setTimeout(()=>{
-        current="";
-        j=0;
-        i=(i+1)%texts.length;
-        type();
-      },1200);
     }
   }
   type();
 
-  // RIPPLE
-  document.querySelectorAll(".btn").forEach(btn=>{
-    btn.addEventListener("click",function(e){
-      const circle=document.createElement("span");
-      circle.classList.add("ripple");
-      const rect=this.getBoundingClientRect();
-      circle.style.left=e.clientX-rect.left+"px";
-      circle.style.top=e.clientY-rect.top+"px";
-      this.appendChild(circle);
-      setTimeout(()=>circle.remove(),600);
+  // SCROLL ANIMATION
+  const sections=document.querySelectorAll("section");
+  function show(){
+    let y=scrollY;
+    sections.forEach(s=>{
+      if(y > s.offsetTop - window.innerHeight/1.3){
+        s.classList.add("active");
+      }
     });
-  });
+  }
+  addEventListener("scroll",show);
+  addEventListener("load",show);
 </script>
 
 </body>
