@@ -8,52 +8,17 @@
     *{margin:0;padding:0;box-sizing:border-box;}
 
     body{
-      font-family:'Segoe UI',sans-serif;
-      background:#000;
+      font-family:'Segoe UI',system-ui,sans-serif;
+      background:#0a0a0a;
       color:white;
       overflow-x:hidden;
       scroll-behavior:smooth;
-    }
-
-    /* LOADER */
-    #loader{
-      position:fixed;
-      width:100%;
-      height:100%;
-      background:#000;
-      display:flex;
-      justify-content:center;
-      align-items:center;
-      z-index:9999;
-    }
-
-    #loader h1{
-      font-size:22px;
-      color:#00c6ff;
-      animation:pulse 1s infinite alternate;
-    }
-
-    @keyframes pulse{
-      from{opacity:0.4;}
-      to{opacity:1;}
     }
 
     canvas{
       position:fixed;
       top:0;
       left:0;
-      z-index:-2;
-    }
-
-    /* CURSOR */
-    .cursor{
-      position:fixed;
-      width:120px;
-      height:120px;
-      background:radial-gradient(circle, rgba(0,150,255,0.25), transparent);
-      pointer-events:none;
-      border-radius:50%;
-      transform:translate(-50%,-50%);
       z-index:-1;
     }
 
@@ -61,32 +26,23 @@
     .nav{
       position:fixed;
       top:20px;
-      right:20px;
+      right:30px;
       z-index:100;
     }
 
     .nav a{
-      color:#aaa;
-      margin-left:12px;
+      color:#9aa0a6;
+      margin-left:15px;
       text-decoration:none;
       font-size:14px;
-      position:relative;
-    }
-
-    .nav a::after{
-      content:"";
-      position:absolute;
-      width:0;
-      height:2px;
-      background:#00c6ff;
-      left:0;
-      bottom:-3px;
       transition:0.3s;
     }
 
-    .nav a:hover::after{width:100%;}
-    .nav a:hover{color:#fff;}
+    .nav a:hover{
+      color:#fff;
+    }
 
+    /* SECTIONS */
     section{
       min-height:100vh;
       display:flex;
@@ -94,8 +50,8 @@
       align-items:center;
       padding:40px;
       opacity:0;
-      transform:translateY(60px);
-      transition:1s ease;
+      transform:translateY(40px);
+      transition:0.8s ease;
     }
 
     section.active{
@@ -105,122 +61,119 @@
 
     /* CARD */
     .card{
-      position:relative;
-      background:rgba(255,255,255,0.05);
-      backdrop-filter:blur(20px);
-      border-radius:20px;
-      padding:30px;
-      max-width:420px;
+      background:rgba(255,255,255,0.04);
+      backdrop-filter:blur(16px);
+      border-radius:18px;
+      padding:40px;
+      max-width:520px;
       width:100%;
       text-align:center;
-      transform-style:preserve-3d;
-      transition:0.2s;
+      border:1px solid rgba(255,255,255,0.08);
+
+      box-shadow:
+        0 0 10px rgba(0,150,255,0.08),
+        0 0 20px rgba(255,0,85,0.05);
+
+      transition:0.3s ease;
     }
 
     .card:hover{
-      transform:rotateX(5deg) rotateY(-5deg);
-    }
-
-    .card::before{
-      content:"";
-      position:absolute;
-      inset:0;
-      border-radius:20px;
-      padding:1px;
-      background:linear-gradient(45deg,#00c6ff,#ff0055,#00c6ff);
-      -webkit-mask:
-        linear-gradient(#000 0 0) content-box,
-        linear-gradient(#000 0 0);
-      -webkit-mask-composite:xor;
-      animation:spin 6s linear infinite;
-    }
-
-    @keyframes spin{
-      to{transform:rotate(360deg);}
+      transform:translateY(-4px);
+      box-shadow:
+        0 0 20px rgba(0,150,255,0.15),
+        0 0 30px rgba(255,0,85,0.08);
     }
 
     h1{
-      font-size:28px;
-      background:linear-gradient(90deg,#00c6ff,#ff0055);
+      font-size:30px;
+      font-weight:600;
+      background:linear-gradient(90deg,#4fc3f7,#ff4d6d);
       -webkit-background-clip:text;
       -webkit-text-fill-color:transparent;
     }
 
     .typing{
       margin-top:10px;
-      color:#aaa;
-      font-size:13px;
-      height:20px;
+      color:#9aa0a6;
+      font-size:14px;
+      height:22px;
     }
 
     p{
-      color:#aaa;
-      margin-top:10px;
+      color:#b0b0b0;
+      margin-top:12px;
       font-size:14px;
+      line-height:1.5;
     }
 
-    /* BUTTON */
+    /* BUTTONS */
     .btn{
-      position:relative;
       display:flex;
       justify-content:center;
       align-items:center;
-      margin:12px auto;
+      gap:8px;
+      margin:14px auto;
       padding:12px;
       border-radius:10px;
-      width:90%;
+      width:85%;
       text-decoration:none;
+      font-size:14px;
       color:white;
-      overflow:hidden;
+      transition:0.25s ease;
     }
 
-    .btn::before{
-      content:"";
-      position:absolute;
-      width:300%;
-      height:300%;
-      background:linear-gradient(45deg,#00c6ff,#ff0055,#00c6ff);
-      animation:spin 5s linear infinite;
-      z-index:-1;
+    .btn.discord{
+      background:#5865F2;
+    }
+
+    .btn.instagram{
+      background:linear-gradient(45deg,#d62976,#962fbf);
     }
 
     .btn:hover{
-      transform:scale(1.05);
+      transform:translateY(-2px);
+      filter:brightness(1.1);
     }
 
     input, textarea{
       width:100%;
-      padding:10px;
+      padding:12px;
       margin:10px 0;
       border-radius:8px;
       border:none;
       background:#111;
       color:white;
+      font-size:14px;
+    }
+
+    input:focus, textarea:focus{
+      outline:1px solid rgba(0,150,255,0.4);
     }
 
     /* FAQ */
     .faq-item{
       text-align:left;
-      margin-top:10px;
+      margin-top:12px;
       cursor:pointer;
     }
 
     .faq-question{
       background:#111;
-      padding:10px;
+      padding:12px;
       border-radius:8px;
+      font-size:14px;
     }
 
     .faq-answer{
       max-height:0;
       overflow:hidden;
-      transition:0.4s;
+      transition:0.3s ease;
       color:#aaa;
       padding:0 10px;
     }
 
     .faq-item.active .faq-answer{
-      max-height:100px;
+      max-height:120px;
       padding:10px;
     }
 
@@ -229,10 +182,7 @@
 
 <body>
 
-<div id="loader"><h1>Loading Azura...</h1></div>
-
 <canvas id="particles"></canvas>
-<div class="cursor" id="cursor"></div>
 
 <div class="nav">
   <a href="#home">Home</a>
@@ -244,38 +194,39 @@
 
 <section id="home">
   <div class="card">
-    <h1>theycallmeazura 🚀</h1>
+    <h1>theycallmeazura</h1>
     <div class="typing" data-text='["Managing communities","Growing servers","Building brands"]'></div>
-    <p>Helping creators grow powerful communities</p>
+    <p>Helping creators build strong and engaging communities.</p>
   </div>
 </section>
 
 <section id="about">
   <div class="card">
     <h1>About</h1>
-    <div class="typing" data-text='["Professional","Growth focused","Community builder"]'></div>
-    <p>Discord specialist focused on engagement and growth.</p>
+    <div class="typing" data-text='["Professional Discord manager","Growth focused","Community builder"]'></div>
+    <p>Focused on moderation, engagement, and long-term growth strategies.</p>
   </div>
 </section>
 
 <section id="socials">
   <div class="card">
     <h1>Socials</h1>
-    <div class="typing" data-text='["Connect with me","Stay updated","Let’s grow"]'></div>
-    <p>Reach me here</p>
+    <div class="typing" data-text='["Connect with me","Stay updated","Let’s grow together"]'></div>
+    <p>Reach out through my socials.</p>
 
-    <a class="btn" href="https://discord.com/users/1476420907718152204">💬 Discord</a>
-    <a class="btn" href="https://instagram.com/theycallmeazura">📸 Instagram</a>
+    <a class="btn discord" href="https://discord.com/users/1476420907718152204" target="_blank">💬 Discord</a>
+    <a class="btn instagram" href="https://instagram.com/theycallmeazura" target="_blank">📸 Instagram</a>
   </div>
 </section>
 
 <section id="contact">
   <div class="card">
     <h1>Contact</h1>
-    <p>Let’s work together</p>
+    <p>Let’s work together.</p>
 
-    <input id="name" placeholder="Name">
-    <textarea id="message" placeholder="Message"></textarea>
+    <input id="name" placeholder="Your Name">
+    <input id="email" placeholder="Your Email">
+    <textarea id="message" placeholder="Your Message"></textarea>
 
     <div class="btn" onclick="sendMail()">Send Message</div>
   </div>
@@ -284,64 +235,30 @@
 <section id="faq">
   <div class="card">
     <h1>FAQ</h1>
+    <p>Common questions.</p>
 
-    <div class="faq-item"><div class="faq-question">How fast?</div><div class="faq-answer">Within 24h</div></div>
-    <div class="faq-item"><div class="faq-question">Servers?</div><div class="faq-answer">Yes</div></div>
-    <div class="faq-item"><div class="faq-question">Contact?</div><div class="faq-answer">Use form</div></div>
+    <div class="faq-item">
+      <div class="faq-question">How fast do you reply?</div>
+      <div class="faq-answer">Usually within 24 hours.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question">Do you manage servers?</div>
+      <div class="faq-answer">Yes, depending on your needs.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question">How can I contact you?</div>
+      <div class="faq-answer">Use the contact form or socials.</div>
+    </div>
+
   </div>
 </section>
 
 <script>
-window.onload=()=>document.getElementById("loader").style.display="none";
+document.addEventListener("DOMContentLoaded", function(){
 
-// CURSOR
-document.addEventListener("mousemove",e=>{
-  let c=document.getElementById("cursor");
-  c.style.left=e.clientX+"px";
-  c.style.top=e.clientY+"px";
-});
-
-// PARTICLES WITH LINES
-const canvas=document.getElementById("particles");
-const ctx=canvas.getContext("2d");
-canvas.width=innerWidth;
-canvas.height=innerHeight;
-
-let p=[];
-for(let i=0;i<60;i++){
-  p.push({x:Math.random()*canvas.width,y:Math.random()*canvas.height,vx:1,vy:1});
-}
-
-function draw(){
-  ctx.clearRect(0,0,canvas.width,canvas.height);
-  p.forEach(a=>{
-    a.x+=a.vx;
-    a.y+=a.vy;
-
-    if(a.x<0||a.x>canvas.width)a.vx*=-1;
-    if(a.y<0||a.y>canvas.height)a.vy*=-1;
-
-    ctx.beginPath();
-    ctx.arc(a.x,a.y,2,0,6.28);
-    ctx.fillStyle="#fff";
-    ctx.fill();
-
-    p.forEach(b=>{
-      let d=Math.hypot(a.x-b.x,a.y-b.y);
-      if(d<100){
-        ctx.strokeStyle="rgba(255,255,255,0.1)";
-        ctx.beginPath();
-        ctx.moveTo(a.x,a.y);
-        ctx.lineTo(b.x,b.y);
-        ctx.stroke();
-      }
-    });
-  });
-  requestAnimationFrame(draw);
-}
-draw();
-
-// TYPING
+// typing
 document.querySelectorAll(".typing").forEach(el=>{
   let texts=JSON.parse(el.getAttribute("data-text"));
   let i=0,j=0,cur="",del=false;
@@ -370,9 +287,31 @@ document.querySelectorAll(".typing").forEach(el=>{
   type();
 });
 
-// SCROLL
+// particles
+const c=document.getElementById("particles");
+const ctx=c.getContext("2d");
+c.width=innerWidth;c.height=innerHeight;
+
+let p=[];
+for(let i=0;i<50;i++){
+  p.push({x:Math.random()*c.width,y:Math.random()*c.height,r:Math.random()*2});
+}
+
+function draw(){
+  ctx.clearRect(0,0,c.width,c.height);
+  p.forEach(a=>{
+    ctx.beginPath();
+    ctx.arc(a.x,a.y,a.r,0,6.28);
+    ctx.fillStyle="#888";
+    ctx.fill();
+  });
+  requestAnimationFrame(draw);
+}
+draw();
+
+// scroll
 const sec=document.querySelectorAll("section");
-addEventListener("scroll",()=>{
+window.addEventListener("scroll",()=>{
   let y=scrollY;
   sec.forEach(s=>{
     if(y>s.offsetTop-window.innerHeight/1.2){
@@ -381,16 +320,18 @@ addEventListener("scroll",()=>{
   });
 });
 
-// CONTACT
-function sendMail(){
+// contact
+window.sendMail=function(){
   let name=document.getElementById("name").value;
   let msg=document.getElementById("message").value;
   location.href=`mailto:azura7636@gmail.com?subject=${name}&body=${msg}`;
 }
 
-// FAQ
+// faq
 document.querySelectorAll(".faq-item").forEach(i=>{
   i.onclick=()=>i.classList.toggle("active");
+});
+
 });
 </script>
 
