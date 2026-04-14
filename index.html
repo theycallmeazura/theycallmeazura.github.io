@@ -149,6 +149,8 @@
 
     .btn.discord{background:#5865F2;}
     .btn.instagram{background:linear-gradient(45deg,#d62976,#962fbf);}
+
+    /* added */
     .btn.send{background:linear-gradient(90deg,#00c6ff,#0072ff);}
 
     input, textarea{
@@ -163,6 +165,7 @@
 
     .faq-item{margin-top:10px;cursor:pointer;}
 
+    /* added */
     .faq-question{
       display:flex;
       justify-content:space-between;
@@ -180,14 +183,12 @@
     .faq-answer{
       max-height:0;
       overflow:hidden;
-      opacity:0;
-      transition:0.4s;
+      transition:0.3s;
       color:#aaa;
     }
 
     .faq-item.active .faq-answer{
       max-height:120px;
-      opacity:1;
     }
 
     .stats{
@@ -237,10 +238,7 @@
 <div class="card">
 <h1>About</h1>
 <div class="typing" data-text='["Professional manager","Growth focused","Trusted partner"]'></div>
-<p>
-I specialize in managing online communities with a strong focus on engagement,
-structure, and long-term growth.
-</p>
+<p>...</p>
 </div>
 </section>
 
@@ -249,7 +247,7 @@ structure, and long-term growth.
 <div class="card">
 <h1>👤 Core Philosophy</h1>
 <div class="typing" data-text='["Consistency","Engagement","Long-term growth"]'></div>
-<p>Communities are built with trust and consistency.</p>
+<p>...</p>
 </div>
 </section>
 
@@ -257,12 +255,24 @@ structure, and long-term growth.
 <section id="stats">
 <div class="card">
 <h1>🤝 Experience</h1>
+<div class="typing" data-text='["Proven results","Real impact","Experience matters"]'></div>
 
 <div class="stats">
-  <div class="stat"><h2 class="counter" data-target="5">0</h2><p>Years Experience</p></div>
-  <div class="stat"><h2 class="counter" data-target="50">0</h2><p>Communities Managed</p></div>
-  <div class="stat"><h2 class="counter" data-target="100">0</h2><p>Staffs Assigned</p></div>
+  <div class="stat">
+    <h2 class="counter" data-target="5">0</h2>
+    <p>Years Experience</p>
+  </div>
+  <div class="stat">
+    <h2 class="counter" data-target="50">0</h2>
+    <p>Communities Managed</p>
+  </div>
+  <div class="stat">
+    <h2 class="counter" data-target="100">0</h2>
+    <p>Staffs Assigned</p>
+  </div>
 </div>
+
+<p>I have consistently delivered growth, structure, and engagement across multiple communities.</p>
 </div>
 </section>
 
@@ -270,14 +280,17 @@ structure, and long-term growth.
 <section id="contact">
 <div class="card">
 <h1>Contact</h1>
+<div class="typing" data-text='["Work together","Project inquiries","Let’s build"]'></div>
 
 <input id="name" placeholder="Your Name">
 <input id="email" placeholder="Your Email">
 <textarea id="message" placeholder="Your Message"></textarea>
 
 <div class="btn send" onclick="sendMail()">
-  <svg width="16" height="16" fill="white"><path d="M2 21l21-9L2 3v7l15 2-15 2z"/></svg>
-  Send Message
+<svg width="16" height="16" fill="white" viewBox="0 0 24 24">
+<path d="M2 21l21-9L2 3v7l15 2-15 2z"/>
+</svg>
+Send Message
 </div>
 </div>
 </section>
@@ -286,30 +299,116 @@ structure, and long-term growth.
 <section id="faq">
 <div class="card">
 <h1>FAQ</h1>
+<div class="typing" data-text='["Quick answers","Common questions","Helpful info"]'></div>
 
 <div class="faq-item" onclick="this.classList.toggle('active')">
-  <div class="faq-question">
-    <span>How fast do you reply?</span>
-    <svg class="arrow" width="14" height="14"><path fill="white" d="M7 10l5 5 5-5z"/></svg>
-  </div>
-  <div class="faq-answer">Usually within 24 hours.</div>
+<div class="faq-question">
+<span>How fast do you reply?</span>
+<svg class="arrow" width="14" height="14" viewBox="0 0 24 24">
+<path fill="white" d="M7 10l5 5 5-5z"/>
+</svg>
+</div>
+<div class="faq-answer">Usually within 24 hours.</div>
 </div>
 
 <div class="faq-item" onclick="this.classList.toggle('active')">
-  <div class="faq-question">
-    <span>Do you manage servers?</span>
-    <svg class="arrow" width="14" height="14"><path fill="white" d="M7 10l5 5 5-5z"/></svg>
-  </div>
-  <div class="faq-answer">Yes, depending on your requirements.</div>
+<div class="faq-question">
+<span>Do you manage servers?</span>
+<svg class="arrow" width="14" height="14" viewBox="0 0 24 24">
+<path fill="white" d="M7 10l5 5 5-5z"/>
+</svg>
+</div>
+<div class="faq-answer">Yes, depending on your requirements.</div>
+</div>
+
+<div class="faq-item" onclick="this.classList.toggle('active')">
+<div class="faq-question">
+<span>How can I contact you?</span>
+<svg class="arrow" width="14" height="14" viewBox="0 0 24 24">
+<path fill="white" d="M7 10l5 5 5-5z"/>
+</svg>
+</div>
+<div class="faq-answer">Use the contact form or my socials.</div>
 </div>
 
 </div>
 </section>
 
 <script>
-function toggleMenu(){menu.classList.toggle("active");menuBtn.classList.toggle("active");}
-function sendMail(){location.href=`mailto:azura7636@gmail.com`;}
+function toggleMenu(){
+  menu.classList.toggle("active");
+  menuBtn.classList.toggle("active");
+}
+
+function sendMail(){
+  let name=document.getElementById("name").value;
+  let msg=document.getElementById("message").value;
+  location.href=`mailto:azura7636@gmail.com?subject=${name}&body=${msg}`;
+}
+
+const cursor=document.getElementById("cursor");
+document.addEventListener("mousemove",(e)=>{
+  cursor.style.top=e.clientY+"px";
+  cursor.style.left=e.clientX+"px";
+});
+
+/* TYPING */
+document.querySelectorAll(".typing").forEach(el=>{
+  let texts=JSON.parse(el.getAttribute("data-text"));
+  let i=0,j=0,cur="",del=false;
+
+  function type(){
+    if(!del && j<texts[i].length){
+      cur+=texts[i][j++];
+      el.innerHTML=cur;
+      setTimeout(type,70);
+    }else if(!del){
+      del=true;
+      setTimeout(type,1500);
+    }else if(del && j>0){
+      cur=cur.slice(0,--j);
+      el.innerHTML=cur;
+      setTimeout(type,30);
+    }else{
+      del=false;
+      i=(i+1)%texts.length;
+      setTimeout(type,500);
+    }
+  }
+  type();
+});
+
+/* SCROLL + COUNTER */
+let counted=false;
+window.addEventListener("scroll",()=>{
+  document.querySelectorAll("section").forEach(s=>{
+    if(scrollY>s.offsetTop-400){
+      s.classList.add("active");
+    }
+  });
+
+  let stats=document.getElementById("stats");
+  if(!counted && scrollY>stats.offsetTop-400){
+    counted=true;
+    document.querySelectorAll(".counter").forEach(c=>{
+      let target=+c.dataset.target;
+      let count=0;
+      let step=target/50;
+
+      function update(){
+        count+=step;
+        if(count<target){
+          c.innerText=Math.floor(count);
+          requestAnimationFrame(update);
+        }else{
+          c.innerText=target+"+";
+        }
+      }
+      update();
+    });
+  }
+});
 </script>
 
 </body>
-  </html>
+</html>
