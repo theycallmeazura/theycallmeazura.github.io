@@ -129,10 +129,9 @@
       color:#b0b0b0;
       margin-top:12px;
       font-size:14px;
-      line-height:1.5;
+      line-height:1.6;
     }
 
-    /* FIXED highlight (white now) */
     .highlight{
       color:#ffffff;
       font-weight:500;
@@ -173,13 +172,6 @@
       justify-content:space-between;
       align-items:center;
       font-weight:600;
-      color:#fff;
-    }
-
-    .arrow{transition:0.3s;}
-
-    .faq-item.active .arrow{
-      transform:rotate(180deg);
     }
 
     .faq-answer{
@@ -235,7 +227,7 @@
 </div>
 </section>
 
-<!-- ABOUT -->
+<!-- ABOUT (FULL) -->
 <section id="about">
 <div class="card">
 <h1>About</h1>
@@ -243,21 +235,24 @@
 <p>
 I specialize in managing online communities with a strong focus on <span class="highlight">engagement</span>,
 <span class="highlight">structure</span>, and <span class="highlight">long-term growth</span>.
-My approach combines moderation, strategic planning, and active interaction to create
-communities that are not just active, but truly connected.
+My approach is strategic — combining moderation, community interaction, and system building
+to create spaces where members stay active and connected. I aim to turn ordinary servers into
+thriving ecosystems that continue to grow sustainably over time.
 </p>
 </div>
 </section>
 
-<!-- PHILOSOPHY -->
+<!-- PHILOSOPHY (FULL) -->
 <section id="philosophy">
 <div class="card">
 <h1>👤 Core Philosophy</h1>
 <div class="typing" data-text='["Consistency","Engagement","Long-term growth"]'></div>
 <p>
-A powerful community is built on <span class="highlight">consistency</span>,
-<span class="highlight">trust</span>, and <span class="highlight">meaningful engagement</span>.
-I focus on long-term sustainability instead of short-term spikes.
+A strong community is not built overnight. It requires <span class="highlight">consistency</span>,
+<span class="highlight">trust</span>, and meaningful engagement. Every system should have purpose,
+every staff member should have direction, and every member should feel valued. I focus on
+long-term sustainability instead of temporary growth spikes, ensuring communities remain active,
+stable, and impactful.
 </p>
 </div>
 </section>
@@ -266,7 +261,6 @@ I focus on long-term sustainability instead of short-term spikes.
 <section id="stats">
 <div class="card">
 <h1>🤝 Experience</h1>
-<div class="typing" data-text='["Proven results","Real impact","Experience matters"]'></div>
 
 <div class="stats">
   <div class="stat">
@@ -282,19 +276,16 @@ I focus on long-term sustainability instead of short-term spikes.
     <p>Staffs Assigned</p>
   </div>
 </div>
+
 </div>
 </section>
 
-<!-- SOCIALS (RESTORED) -->
+<!-- SOCIAL -->
 <section id="socials">
 <div class="card">
 <h1>Socials</h1>
 <div class="typing" data-text='["Connect with me","Let’s collaborate","Reach out anytime"]'></div>
-
-<p>
-Reach out via <span class="highlight">Discord</span> or <span class="highlight">Instagram</span>
-for collaborations and community work.
-</p>
+<p>Reach out via Discord or Instagram for collaborations.</p>
 
 <a class="btn discord" href="https://discord.com/users/1476420907718152204">💬 Discord</a>
 <a class="btn instagram" href="https://instagram.com/theycallmeazura">📸 Instagram</a>
@@ -312,12 +303,7 @@ for collaborations and community work.
 <input id="email" placeholder="Your Email">
 <textarea id="message" placeholder="Your Message"></textarea>
 
-<div class="btn send" onclick="sendMail()">
-<svg width="16" height="16" fill="white" viewBox="0 0 24 24">
-<path d="M2 21l21-9L2 3v7l15 2-15 2z"/>
-</svg>
-Send Message
-</div>
+<div class="btn send" onclick="sendMail()">Send Message</div>
 </div>
 </section>
 
@@ -325,29 +311,19 @@ Send Message
 <section id="faq">
 <div class="card">
 <h1>FAQ</h1>
-<div class="typing" data-text='["Quick answers","Common questions","Helpful info"]'></div>
 
 <div class="faq-item" onclick="this.classList.toggle('active')">
-<div class="faq-question">
-<span>How fast do you reply?</span>
-<svg class="arrow" width="14" height="14"><path fill="white" d="M7 10l5 5 5-5z"/></svg>
-</div>
+<p><b>How fast do you reply?</b></p>
 <div class="faq-answer">Usually within 24 hours.</div>
 </div>
 
 <div class="faq-item" onclick="this.classList.toggle('active')">
-<div class="faq-question">
-<span>Do you manage servers?</span>
-<svg class="arrow" width="14" height="14"><path fill="white" d="M7 10l5 5 5-5z"/></svg>
-</div>
+<p><b>Do you manage servers?</b></p>
 <div class="faq-answer">Yes, depending on your requirements.</div>
 </div>
 
 <div class="faq-item" onclick="this.classList.toggle('active')">
-<div class="faq-question">
-<span>How can I contact you?</span>
-<svg class="arrow" width="14" height="14"><path fill="white" d="M7 10l5 5 5-5z"/></svg>
-</div>
+<p><b>How can I contact you?</b></p>
 <div class="faq-answer">Use the contact form or socials.</div>
 </div>
 
@@ -372,39 +348,32 @@ document.addEventListener("mousemove",(e)=>{
   cursor.style.left=e.clientX+"px";
 });
 
-/* TYPING */
-document.querySelectorAll(".typing").forEach(el=>{
-  let texts=JSON.parse(el.getAttribute("data-text"));
-  let i=0,j=0,cur="",del=false;
-
-  function type(){
-    if(!del && j<texts[i].length){
-      cur+=texts[i][j++];
-      el.innerHTML=cur;
-      setTimeout(type,70);
-    }else if(!del){
-      del=true;
-      setTimeout(type,1500);
-    }else if(del && j>0){
-      cur=cur.slice(0,--j);
-      el.innerHTML=cur;
-      setTimeout(type,30);
-    }else{
-      del=false;
-      i=(i+1)%texts.length;
-      setTimeout(type,500);
-    }
-  }
-  type();
-});
-
-/* SCROLL */
+/* COUNTER FIX */
+let counted=false;
 window.addEventListener("scroll",()=>{
   document.querySelectorAll("section").forEach(s=>{
     if(scrollY>s.offsetTop-400){
       s.classList.add("active");
     }
   });
+
+  let stats=document.getElementById("stats");
+  if(!counted && scrollY>stats.offsetTop-300){
+    counted=true;
+    document.querySelectorAll(".counter").forEach(c=>{
+      let target=+c.dataset.target;
+      let count=0;
+
+      let interval=setInterval(()=>{
+        count++;
+        c.innerText=count;
+        if(count>=target){
+          c.innerText=target+"+";
+          clearInterval(interval);
+        }
+      },20);
+    });
+  }
 });
 </script>
 
