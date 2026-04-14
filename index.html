@@ -106,7 +106,6 @@
       width:100%;
       text-align:center;
       border:1px solid rgba(255,255,255,0.08);
-
       box-shadow:
         0 0 20px rgba(0,198,255,0.35),
         0 0 40px rgba(0,198,255,0.2);
@@ -133,9 +132,10 @@
       line-height:1.5;
     }
 
+    /* FIXED highlight (white now) */
     .highlight{
-      color:#00c6ff;
-      text-shadow:0 0 8px rgba(0,198,255,0.8);
+      color:#ffffff;
+      font-weight:500;
     }
 
     .btn{
@@ -244,8 +244,7 @@
 I specialize in managing online communities with a strong focus on <span class="highlight">engagement</span>,
 <span class="highlight">structure</span>, and <span class="highlight">long-term growth</span>.
 My approach combines moderation, strategic planning, and active interaction to create
-communities that are not just active, but truly connected. I aim to build environments
-where members feel valued, conversations stay alive, and growth happens naturally over time.
+communities that are not just active, but truly connected.
 </p>
 </div>
 </section>
@@ -258,10 +257,7 @@ where members feel valued, conversations stay alive, and growth happens naturall
 <p>
 A powerful community is built on <span class="highlight">consistency</span>,
 <span class="highlight">trust</span>, and <span class="highlight">meaningful engagement</span>.
-I believe that growth is not just about numbers, but about creating a space where people
-genuinely want to stay and contribute. Every decision — from moderation to event planning —
-should serve a clear purpose. My focus is always on long-term sustainability, ensuring that
-communities remain active, structured, and valuable over time.
+I focus on long-term sustainability instead of short-term spikes.
 </p>
 </div>
 </section>
@@ -286,8 +282,23 @@ communities remain active, structured, and valuable over time.
     <p>Staffs Assigned</p>
   </div>
 </div>
+</div>
+</section>
 
-<p>I have consistently delivered growth, structure, and engagement across multiple communities.</p>
+<!-- SOCIALS (RESTORED) -->
+<section id="socials">
+<div class="card">
+<h1>Socials</h1>
+<div class="typing" data-text='["Connect with me","Let’s collaborate","Reach out anytime"]'></div>
+
+<p>
+Reach out via <span class="highlight">Discord</span> or <span class="highlight">Instagram</span>
+for collaborations and community work.
+</p>
+
+<a class="btn discord" href="https://discord.com/users/1476420907718152204">💬 Discord</a>
+<a class="btn instagram" href="https://instagram.com/theycallmeazura">📸 Instagram</a>
+
 </div>
 </section>
 
@@ -319,9 +330,7 @@ Send Message
 <div class="faq-item" onclick="this.classList.toggle('active')">
 <div class="faq-question">
 <span>How fast do you reply?</span>
-<svg class="arrow" width="14" height="14" viewBox="0 0 24 24">
-<path fill="white" d="M7 10l5 5 5-5z"/>
-</svg>
+<svg class="arrow" width="14" height="14"><path fill="white" d="M7 10l5 5 5-5z"/></svg>
 </div>
 <div class="faq-answer">Usually within 24 hours.</div>
 </div>
@@ -329,9 +338,7 @@ Send Message
 <div class="faq-item" onclick="this.classList.toggle('active')">
 <div class="faq-question">
 <span>Do you manage servers?</span>
-<svg class="arrow" width="14" height="14" viewBox="0 0 24 24">
-<path fill="white" d="M7 10l5 5 5-5z"/>
-</svg>
+<svg class="arrow" width="14" height="14"><path fill="white" d="M7 10l5 5 5-5z"/></svg>
 </div>
 <div class="faq-answer">Yes, depending on your requirements.</div>
 </div>
@@ -339,11 +346,9 @@ Send Message
 <div class="faq-item" onclick="this.classList.toggle('active')">
 <div class="faq-question">
 <span>How can I contact you?</span>
-<svg class="arrow" width="14" height="14" viewBox="0 0 24 24">
-<path fill="white" d="M7 10l5 5 5-5z"/>
-</svg>
+<svg class="arrow" width="14" height="14"><path fill="white" d="M7 10l5 5 5-5z"/></svg>
 </div>
-<div class="faq-answer">Use the contact form or my socials.</div>
+<div class="faq-answer">Use the contact form or socials.</div>
 </div>
 
 </div>
@@ -393,35 +398,13 @@ document.querySelectorAll(".typing").forEach(el=>{
   type();
 });
 
-/* SCROLL + COUNTER */
-let counted=false;
+/* SCROLL */
 window.addEventListener("scroll",()=>{
   document.querySelectorAll("section").forEach(s=>{
     if(scrollY>s.offsetTop-400){
       s.classList.add("active");
     }
   });
-
-  let stats=document.getElementById("stats");
-  if(!counted && scrollY>stats.offsetTop-400){
-    counted=true;
-    document.querySelectorAll(".counter").forEach(c=>{
-      let target=+c.dataset.target;
-      let count=0;
-      let step=target/50;
-
-      function update(){
-        count+=step;
-        if(count<target){
-          c.innerText=Math.floor(count);
-          requestAnimationFrame(update);
-        }else{
-          c.innerText=target+"+";
-        }
-      }
-      update();
-    });
-  }
 });
 </script>
 
