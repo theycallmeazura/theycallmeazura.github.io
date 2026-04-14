@@ -133,11 +133,9 @@
       line-height:1.5;
     }
 
-    /* 🔥 HIGHLIGHT EFFECT */
     .highlight{
       color:#00c6ff;
       text-shadow:0 0 8px rgba(0,198,255,0.8);
-      font-weight:500;
     }
 
     .btn{
@@ -187,14 +185,12 @@
     .faq-answer{
       max-height:0;
       overflow:hidden;
-      opacity:0;
-      transition:0.4s;
+      transition:0.3s;
       color:#aaa;
     }
 
     .faq-item.active .faq-answer{
       max-height:120px;
-      opacity:1;
     }
 
     .stats{
@@ -247,7 +243,9 @@
 <p>
 I specialize in managing online communities with a strong focus on <span class="highlight">engagement</span>,
 <span class="highlight">structure</span>, and <span class="highlight">long-term growth</span>.
-My goal is to build spaces where members feel valued and stay active naturally.
+My approach combines moderation, strategic planning, and active interaction to create
+communities that are not just active, but truly connected. I aim to build environments
+where members feel valued, conversations stay alive, and growth happens naturally over time.
 </p>
 </div>
 </section>
@@ -258,9 +256,12 @@ My goal is to build spaces where members feel valued and stay active naturally.
 <h1>👤 Core Philosophy</h1>
 <div class="typing" data-text='["Consistency","Engagement","Long-term growth"]'></div>
 <p>
-A great community is built on <span class="highlight">consistency</span>,
-<span class="highlight">trust</span>, and <span class="highlight">meaningful interaction</span>.
-I focus on long-term sustainability instead of short-term growth spikes.
+A powerful community is built on <span class="highlight">consistency</span>,
+<span class="highlight">trust</span>, and <span class="highlight">meaningful engagement</span>.
+I believe that growth is not just about numbers, but about creating a space where people
+genuinely want to stay and contribute. Every decision — from moderation to event planning —
+should serve a clear purpose. My focus is always on long-term sustainability, ensuring that
+communities remain active, structured, and valuable over time.
 </p>
 </div>
 </section>
@@ -272,10 +273,21 @@ I focus on long-term sustainability instead of short-term growth spikes.
 <div class="typing" data-text='["Proven results","Real impact","Experience matters"]'></div>
 
 <div class="stats">
-  <div class="stat"><h2 class="counter" data-target="5">0</h2><p>Years Experience</p></div>
-  <div class="stat"><h2 class="counter" data-target="50">0</h2><p>Communities Managed</p></div>
-  <div class="stat"><h2 class="counter" data-target="100">0</h2><p>Staffs Assigned</p></div>
+  <div class="stat">
+    <h2 class="counter" data-target="5">0</h2>
+    <p>Years Experience</p>
+  </div>
+  <div class="stat">
+    <h2 class="counter" data-target="50">0</h2>
+    <p>Communities Managed</p>
+  </div>
+  <div class="stat">
+    <h2 class="counter" data-target="100">0</h2>
+    <p>Staffs Assigned</p>
+  </div>
 </div>
+
+<p>I have consistently delivered growth, structure, and engagement across multiple communities.</p>
 </div>
 </section>
 
@@ -324,15 +336,93 @@ Send Message
 <div class="faq-answer">Yes, depending on your requirements.</div>
 </div>
 
+<div class="faq-item" onclick="this.classList.toggle('active')">
+<div class="faq-question">
+<span>How can I contact you?</span>
+<svg class="arrow" width="14" height="14" viewBox="0 0 24 24">
+<path fill="white" d="M7 10l5 5 5-5z"/>
+</svg>
+</div>
+<div class="faq-answer">Use the contact form or my socials.</div>
+</div>
+
 </div>
 </section>
 
 <script>
-function toggleMenu(){menu.classList.toggle("active");menuBtn.classList.toggle("active");}
-function sendMail(){let name=document.getElementById("name").value;let msg=document.getElementById("message").value;location.href=`mailto:azura7636@gmail.com?subject=${name}&body=${msg}`;}
+function toggleMenu(){
+  menu.classList.toggle("active");
+  menuBtn.classList.toggle("active");
+}
+
+function sendMail(){
+  let name=document.getElementById("name").value;
+  let msg=document.getElementById("message").value;
+  location.href=`mailto:azura7636@gmail.com?subject=${name}&body=${msg}`;
+}
 
 const cursor=document.getElementById("cursor");
-document.addEventListener("mousemove",(e)=>{cursor.style.top=e.clientY+"px";cursor.style.left=e.clientX+"px";});
+document.addEventListener("mousemove",(e)=>{
+  cursor.style.top=e.clientY+"px";
+  cursor.style.left=e.clientX+"px";
+});
+
+/* TYPING */
+document.querySelectorAll(".typing").forEach(el=>{
+  let texts=JSON.parse(el.getAttribute("data-text"));
+  let i=0,j=0,cur="",del=false;
+
+  function type(){
+    if(!del && j<texts[i].length){
+      cur+=texts[i][j++];
+      el.innerHTML=cur;
+      setTimeout(type,70);
+    }else if(!del){
+      del=true;
+      setTimeout(type,1500);
+    }else if(del && j>0){
+      cur=cur.slice(0,--j);
+      el.innerHTML=cur;
+      setTimeout(type,30);
+    }else{
+      del=false;
+      i=(i+1)%texts.length;
+      setTimeout(type,500);
+    }
+  }
+  type();
+});
+
+/* SCROLL + COUNTER */
+let counted=false;
+window.addEventListener("scroll",()=>{
+  document.querySelectorAll("section").forEach(s=>{
+    if(scrollY>s.offsetTop-400){
+      s.classList.add("active");
+    }
+  });
+
+  let stats=document.getElementById("stats");
+  if(!counted && scrollY>stats.offsetTop-400){
+    counted=true;
+    document.querySelectorAll(".counter").forEach(c=>{
+      let target=+c.dataset.target;
+      let count=0;
+      let step=target/50;
+
+      function update(){
+        count+=step;
+        if(count<target){
+          c.innerText=Math.floor(count);
+          requestAnimationFrame(update);
+        }else{
+          c.innerText=target+"+";
+        }
+      }
+      update();
+    });
+  }
+});
 </script>
 
 </body>
