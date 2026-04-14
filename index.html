@@ -144,10 +144,32 @@
       width:85%;
       text-decoration:none;
       color:white;
+      cursor:pointer;
     }
 
     .btn.discord{background:#5865F2;}
     .btn.instagram{background:linear-gradient(45deg,#d62976,#962fbf);}
+
+    input, textarea{
+      width:100%;
+      padding:12px;
+      margin:10px 0;
+      border-radius:8px;
+      border:none;
+      background:#111;
+      color:white;
+    }
+
+    .faq-item{margin-top:10px;cursor:pointer;}
+    .faq-answer{
+      max-height:0;
+      overflow:hidden;
+      transition:0.3s;
+      color:#aaa;
+    }
+    .faq-item.active .faq-answer{
+      max-height:120px;
+    }
 
     .stats{
       display:flex;
@@ -182,30 +204,45 @@
   <a href="#faq" onclick="toggleMenu()">FAQ</a>
 </div>
 
+<!-- HOME -->
 <section id="home">
 <div class="card">
 <h1>theycallmeazura 🚀</h1>
 <div class="typing" data-text='["Managing communities","Growing servers","Building brands"]'></div>
-<p>I help communities grow and stay active.</p>
+<p>I help communities grow, stay active and build strong engagement.</p>
 </div>
 </section>
 
+<!-- ABOUT -->
 <section id="about">
 <div class="card">
 <h1>About</h1>
-<div class="typing" data-text='["Professional","Growth focused","Trusted"]'></div>
-<p>I manage communities with structure and consistency.</p>
+<div class="typing" data-text='["Professional manager","Growth focused","Trusted partner"]'></div>
+<p>
+I specialize in managing online communities with a strong focus on engagement,
+structure, and long-term growth. My approach is strategic — combining moderation,
+community interaction, and system building to create a space where members stay active
+and connected. I aim to turn ordinary servers into thriving communities.
+</p>
 </div>
 </section>
 
+<!-- PHILOSOPHY -->
 <section id="philosophy">
 <div class="card">
 <h1>👤 Core Philosophy</h1>
-<div class="typing" data-text='["Consistency","Trust","Long-term"]'></div>
-<p>Communities are built with trust and consistency.</p>
+<div class="typing" data-text='["Consistency","Engagement","Long-term growth"]'></div>
+<p>
+A strong community is not built overnight. It requires consistent effort,
+clear structure, and genuine engagement. My philosophy is simple — build
+trust first, growth follows. Every member should feel valued, every staff
+member should have direction, and every system should serve a purpose.
+I focus on long-term sustainability instead of short-term spikes.
+</p>
 </div>
 </section>
 
+<!-- STATS -->
 <section id="stats">
 <div class="card">
 <h1>📊 Experience</h1>
@@ -216,55 +253,80 @@
     <h2 class="counter" data-target="5">0</h2>
     <p>Years Experience</p>
   </div>
-
   <div class="stat">
     <h2 class="counter" data-target="50">0</h2>
     <p>Communities Managed</p>
   </div>
-
   <div class="stat">
     <h2 class="counter" data-target="100">0</h2>
     <p>Staffs Assigned</p>
   </div>
 </div>
 
-<p>I have consistently delivered growth and engagement.</p>
-
+<p>I have consistently delivered growth, structure, and engagement across multiple communities.</p>
 </div>
 </section>
 
+<!-- SOCIALS -->
 <section id="socials">
 <div class="card">
 <h1>Socials</h1>
-<div class="typing" data-text='["Connect","Collaborate","Reach out"]'></div>
+<div class="typing" data-text='["Connect with me","Let’s collaborate","Reach out anytime"]'></div>
+<p>You can contact me through these platforms for collaborations or queries.</p>
 
 <a class="btn discord" href="https://discord.com/users/1476420907718152204">💬 Discord</a>
 <a class="btn instagram" href="https://instagram.com/theycallmeazura">📸 Instagram</a>
-
 </div>
 </section>
 
+<!-- CONTACT -->
 <section id="contact">
 <div class="card">
 <h1>Contact</h1>
-<div class="typing" data-text='["Work together","Projects","Let’s build"]'></div>
-<p>Reach out for collaborations.</p>
+<div class="typing" data-text='["Work together","Project inquiries","Let’s build"]'></div>
+
+<input id="name" placeholder="Your Name">
+<input id="email" placeholder="Your Email">
+<textarea id="message" placeholder="Your Message"></textarea>
+
+<div class="btn" onclick="sendMail()">Send Message</div>
 </div>
 </section>
 
+<!-- FAQ -->
 <section id="faq">
 <div class="card">
 <h1>FAQ</h1>
-<div class="typing" data-text='["Quick answers","Helpful info","Support"]'></div>
-<p>I usually reply within 24 hours.</p>
+<div class="typing" data-text='["Quick answers","Common questions","Helpful info"]'></div>
+
+<div class="faq-item" onclick="this.classList.toggle('active')">
+  <p>How fast do you reply?</p>
+  <div class="faq-answer">Usually within 24 hours.</div>
+</div>
+
+<div class="faq-item" onclick="this.classList.toggle('active')">
+  <p>Do you manage servers?</p>
+  <div class="faq-answer">Yes, depending on your requirements.</div>
+</div>
+
+<div class="faq-item" onclick="this.classList.toggle('active')">
+  <p>How can I contact you?</p>
+  <div class="faq-answer">Use the contact form or my socials.</div>
+</div>
+
 </div>
 </section>
 
 <script>
-
 function toggleMenu(){
   menu.classList.toggle("active");
   menuBtn.classList.toggle("active");
+}
+
+function sendMail(){
+  let name=document.getElementById("name").value;
+  let msg=document.getElementById("message").value;
+  location.href=`mailto:azura7636@gmail.com?subject=${name}&body=${msg}`;
 }
 
 const cursor=document.getElementById("cursor");
@@ -329,7 +391,6 @@ window.addEventListener("scroll",()=>{
     });
   }
 });
-
 </script>
 
 </body>
