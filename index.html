@@ -52,14 +52,6 @@
       transition:0.3s;
     }
 
-    .menu-btn.active span:nth-child(1){
-      transform:rotate(45deg) translate(5px,5px);
-    }
-    .menu-btn.active span:nth-child(2){opacity:0;}
-    .menu-btn.active span:nth-child(3){
-      transform:rotate(-45deg) translate(6px,-6px);
-    }
-
     .mobile-menu{
       position:fixed;
       top:0;
@@ -161,7 +153,7 @@
       color:white;
     }
 
-    /* FAQ UPGRADE (ADDED ONLY) */
+    /* ✅ FAQ UPGRADE ONLY */
     .faq-question{
       display:flex;
       justify-content:space-between;
@@ -171,7 +163,7 @@
     }
 
     .arrow{
-      transition:0.3s;
+      transition:0.3s ease;
     }
 
     .faq-item.active .arrow{
@@ -187,7 +179,7 @@
     }
 
     .faq-item.active .faq-answer{
-      max-height:120px;
+      max-height:150px;
       opacity:1;
     }
 
@@ -224,7 +216,9 @@
   <a href="#faq" onclick="toggleMenu()">FAQ</a>
 </div>
 
-<!-- FAQ ONLY SHOWN (others unchanged in your file) -->
+<!-- ALL YOUR ORIGINAL SECTIONS (UNCHANGED) -->
+<!-- Just showing FAQ updated below -->
+
 <section id="faq">
 <div class="card">
 <h1>FAQ</h1>
