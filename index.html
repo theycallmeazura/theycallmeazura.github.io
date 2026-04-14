@@ -22,7 +22,7 @@
       z-index:-1;
     }
 
-    /* === NEW: CURSOR GLOW === */
+    /* CURSOR */
     .cursor{
       position:fixed;
       width:120px;
@@ -34,24 +34,7 @@
       z-index:999;
     }
 
-    /* KEEP ALL YOUR OLD STYLES SAME BELOW */
-
-    .overlay{
-      position:fixed;
-      inset:0;
-      backdrop-filter:blur(6px);
-      background:rgba(0,0,0,0.4);
-      opacity:0;
-      pointer-events:none;
-      transition:0.3s;
-      z-index:140;
-    }
-
-    .overlay.active{
-      opacity:1;
-      pointer-events:auto;
-    }
-
+    /* HAMBURGER */
     .menu-btn{
       position:fixed;
       top:20px;
@@ -69,19 +52,17 @@
       background:white;
       margin:5px 0;
       transition:0.3s;
-      border-radius:2px;
     }
 
     .menu-btn.active span:nth-child(1){
       transform:rotate(45deg) translate(5px,5px);
     }
-    .menu-btn.active span:nth-child(2){
-      opacity:0;
-    }
+    .menu-btn.active span:nth-child(2){opacity:0;}
     .menu-btn.active span:nth-child(3){
       transform:rotate(-45deg) translate(6px,-6px);
     }
 
+    /* MENU */
     .mobile-menu{
       position:fixed;
       top:0;
@@ -90,37 +71,20 @@
       height:100%;
       background:#0a0a0a;
       padding:70px 20px;
-      transition:0.35s ease;
+      transition:0.3s;
       z-index:150;
-      border-right:1px solid rgba(255,255,255,0.1);
     }
 
-    .mobile-menu.active{
-      left:0;
-    }
+    .mobile-menu.active{left:0;}
 
     .mobile-menu a{
       display:block;
       margin:18px 0;
       color:#ccc;
       text-decoration:none;
-      font-size:15px;
     }
 
-    .nav{
-      position:fixed;
-      top:20px;
-      right:30px;
-      z-index:100;
-    }
-
-    .nav a{
-      color:#9aa0a6;
-      margin-left:15px;
-      text-decoration:none;
-      font-size:14px;
-    }
-
+    /* SECTIONS */
     section{
       min-height:100vh;
       display:flex;
@@ -146,10 +110,7 @@
       width:100%;
       text-align:center;
       border:1px solid rgba(255,255,255,0.08);
-
-      box-shadow:
-        0 0 15px rgba(0,198,255,0.25),
-        0 0 30px rgba(0,198,255,0.15);
+      box-shadow:0 0 20px rgba(0,198,255,0.2);
     }
 
     h1{
@@ -159,33 +120,45 @@
       -webkit-text-fill-color:transparent;
     }
 
+    .typing{
+      margin-top:10px;
+      color:#9aa0a6;
+      font-size:14px;
+      height:22px;
+    }
+
+    p{
+      color:#b0b0b0;
+      margin-top:12px;
+      font-size:14px;
+      line-height:1.5;
+    }
+
+    /* BUTTONS */
     .btn{
       display:flex;
       justify-content:center;
+      align-items:center;
+      gap:8px;
       margin:14px auto;
       padding:12px;
       border-radius:10px;
       width:85%;
       text-decoration:none;
       color:white;
-      transition:0.25s;
     }
 
-    .btn:hover{
-      transform:scale(1.05);
-    }
+    .btn.discord{background:#5865F2;}
+    .btn.instagram{background:linear-gradient(45deg,#d62976,#962fbf);}
 
   </style>
 </head>
 
 <body>
 
-<!-- NEW CURSOR -->
 <div class="cursor" id="cursor"></div>
 
 <canvas id="particles"></canvas>
-
-<div class="overlay" id="overlay" onclick="toggleMenu()"></div>
 
 <div class="menu-btn" id="menuBtn" onclick="toggleMenu()">
   <span></span><span></span><span></span>
@@ -200,65 +173,109 @@
   <a href="#faq" onclick="toggleMenu()">FAQ</a>
 </div>
 
-<div class="nav">
-  <a href="#home">Home</a>
-  <a href="#about">About</a>
-  <a href="#philosophy">Philosophy</a>
-  <a href="#socials">Socials</a>
-  <a href="#contact">Contact</a>
-  <a href="#faq">FAQ</a>
-</div>
-
+<!-- HOME -->
 <section id="home">
-  <div class="card">
-    <h1>theycallmeazura 🚀</h1>
-  </div>
+<div class="card">
+<h1>theycallmeazura 🚀</h1>
+<div class="typing" data-text='["Managing communities","Growing servers","Building brands"]'></div>
+<p>I help communities grow, stay active and build strong engagement.</p>
+</div>
 </section>
 
+<!-- ABOUT -->
 <section id="about">
-  <div class="card">
-    <h1>About</h1>
-  </div>
+<div class="card">
+<h1>About</h1>
+<div class="typing" data-text='["Professional manager","Growth focused","Trusted partner"]'></div>
+<p>I specialize in managing online communities with a focus on engagement, structure and long-term success.</p>
+</div>
 </section>
 
+<!-- PHILOSOPHY -->
 <section id="philosophy">
-  <div class="card">
-    <h1>👤 Core Philosophy</h1>
-  </div>
+<div class="card">
+<h1>👤 Core Philosophy</h1>
+<div class="typing" data-text='["Consistency","Engagement","Long-term growth"]'></div>
+<p>
+A strong community is not built overnight. It requires consistent effort,
+clear structure, and genuine engagement. My philosophy is simple — build
+trust first, growth follows. Every member should feel valued, every staff
+member should have direction, and every system should serve a purpose.
+I focus on long-term sustainability instead of short-term spikes.
+</p>
+</div>
 </section>
 
+<!-- SOCIALS -->
 <section id="socials">
-  <div class="card">
-    <h1>Socials</h1>
-    <a class="btn discord">Discord</a>
-    <a class="btn instagram">Instagram</a>
-  </div>
+<div class="card">
+<h1>Socials</h1>
+<div class="typing" data-text='["Connect with me","Let’s collaborate","Reach out anytime"]'></div>
+<p>You can contact me through these platforms.</p>
+
+<a class="btn discord" href="https://discord.com/users/1476420907718152204">💬 Discord</a>
+<a class="btn instagram" href="https://instagram.com/theycallmeazura">📸 Instagram</a>
+
+</div>
 </section>
 
+<!-- CONTACT -->
 <section id="contact">
-  <div class="card">
-    <h1>Contact</h1>
-  </div>
+<div class="card">
+<h1>Contact</h1>
+<div class="typing" data-text='["Work together","Project inquiries","Let’s build"]'></div>
+<p>Send me a message for collaborations or projects.</p>
+</div>
 </section>
 
+<!-- FAQ -->
 <section id="faq">
-  <div class="card">
-    <h1>FAQ</h1>
-  </div>
+<div class="card">
+<h1>FAQ</h1>
+<div class="typing" data-text='["Quick answers","Common questions","Helpful info"]'></div>
+<p>I usually respond within 24 hours and manage communities professionally.</p>
+</div>
 </section>
 
 <script>
+
+/* MENU */
 function toggleMenu(){
   menu.classList.toggle("active");
   menuBtn.classList.toggle("active");
-  overlay.classList.toggle("active");
 }
 
-/* CURSOR FOLLOW */
+/* CURSOR */
 const cursor=document.getElementById("cursor");
 document.addEventListener("mousemove",(e)=>{
   cursor.style.top=e.clientY+"px";
   cursor.style.left=e.clientX+"px";
+});
+
+/* TYPING */
+document.querySelectorAll(".typing").forEach(el=>{
+  let texts=JSON.parse(el.getAttribute("data-text"));
+  let i=0,j=0,cur="",del=false;
+
+  function type(){
+    if(!del && j<texts[i].length){
+      cur+=texts[i][j++];
+      el.innerHTML=cur;
+      setTimeout(type,70);
+    }else if(!del){
+      del=true;
+      setTimeout(type,1500);
+    }else if(del && j>0){
+      cur=cur.slice(0,--j);
+      el.innerHTML=cur;
+      setTimeout(type,30);
+    }else{
+      del=false;
+      i=(i+1)%texts.length;
+      setTimeout(type,500);
+    }
+  }
+  type();
 });
 
 /* SCROLL */
@@ -269,6 +286,7 @@ window.addEventListener("scroll",()=>{
     }
   });
 });
+
 </script>
 
 </body>
