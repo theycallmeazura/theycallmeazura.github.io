@@ -52,6 +52,14 @@
       transition:0.3s;
     }
 
+    .menu-btn.active span:nth-child(1){
+      transform:rotate(45deg) translate(5px,5px);
+    }
+    .menu-btn.active span:nth-child(2){opacity:0;}
+    .menu-btn.active span:nth-child(3){
+      transform:rotate(-45deg) translate(6px,-6px);
+    }
+
     .mobile-menu{
       position:fixed;
       top:0;
@@ -153,7 +161,8 @@
       color:white;
     }
 
-    /* ✅ FAQ UPGRADE ONLY */
+    .faq-item{margin-top:10px;cursor:pointer;}
+
     .faq-question{
       display:flex;
       justify-content:space-between;
@@ -162,9 +171,7 @@
       color:#fff;
     }
 
-    .arrow{
-      transition:0.3s ease;
-    }
+    .arrow{transition:0.3s;}
 
     .faq-item.active .arrow{
       transform:rotate(180deg);
@@ -173,13 +180,13 @@
     .faq-answer{
       max-height:0;
       overflow:hidden;
-      transition:max-height 0.4s ease, opacity 0.3s ease;
       opacity:0;
+      transition:0.4s;
       color:#aaa;
     }
 
     .faq-item.active .faq-answer{
-      max-height:150px;
+      max-height:120px;
       opacity:1;
     }
 
@@ -216,9 +223,66 @@
   <a href="#faq" onclick="toggleMenu()">FAQ</a>
 </div>
 
-<!-- ALL YOUR ORIGINAL SECTIONS (UNCHANGED) -->
-<!-- Just showing FAQ updated below -->
+<!-- HOME -->
+<section id="home">
+<div class="card">
+<h1>theycallmeazura 🚀</h1>
+<div class="typing" data-text='["Managing communities","Growing servers","Building brands"]'></div>
+<p>I help communities grow, stay active and build strong engagement.</p>
+</div>
+</section>
 
+<!-- ABOUT -->
+<section id="about">
+<div class="card">
+<h1>About</h1>
+<div class="typing" data-text='["Professional manager","Growth focused","Trusted partner"]'></div>
+<p>
+I specialize in managing online communities with a strong focus on engagement,
+structure, and long-term growth.
+</p>
+</div>
+</section>
+
+<!-- PHILOSOPHY -->
+<section id="philosophy">
+<div class="card">
+<h1>👤 Core Philosophy</h1>
+<div class="typing" data-text='["Consistency","Engagement","Long-term growth"]'></div>
+<p>Communities are built with trust and consistency.</p>
+</div>
+</section>
+
+<!-- STATS -->
+<section id="stats">
+<div class="card">
+<h1>🤝 Experience</h1>
+
+<div class="stats">
+  <div class="stat"><h2 class="counter" data-target="5">0</h2><p>Years Experience</p></div>
+  <div class="stat"><h2 class="counter" data-target="50">0</h2><p>Communities Managed</p></div>
+  <div class="stat"><h2 class="counter" data-target="100">0</h2><p>Staffs Assigned</p></div>
+</div>
+</div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+<div class="card">
+<h1>Contact</h1>
+
+<input id="name" placeholder="Your Name">
+<input id="email" placeholder="Your Email">
+<textarea id="message" placeholder="Your Message"></textarea>
+
+<div class="btn send" onclick="sendMail()">
+  <svg width="16" height="16" fill="white"><path d="M2 21l21-9L2 3v7l15 2-15 2z"/></svg>
+  Send Message
+</div>
+</div>
+</section>
+
+<!-- FAQ -->
 <section id="faq">
 <div class="card">
 <h1>FAQ</h1>
@@ -226,9 +290,7 @@
 <div class="faq-item" onclick="this.classList.toggle('active')">
   <div class="faq-question">
     <span>How fast do you reply?</span>
-    <svg class="arrow" width="14" height="14" viewBox="0 0 24 24">
-      <path fill="white" d="M7 10l5 5 5-5z"/>
-    </svg>
+    <svg class="arrow" width="14" height="14"><path fill="white" d="M7 10l5 5 5-5z"/></svg>
   </div>
   <div class="faq-answer">Usually within 24 hours.</div>
 </div>
@@ -236,32 +298,18 @@
 <div class="faq-item" onclick="this.classList.toggle('active')">
   <div class="faq-question">
     <span>Do you manage servers?</span>
-    <svg class="arrow" width="14" height="14" viewBox="0 0 24 24">
-      <path fill="white" d="M7 10l5 5 5-5z"/>
-    </svg>
+    <svg class="arrow" width="14" height="14"><path fill="white" d="M7 10l5 5 5-5z"/></svg>
   </div>
   <div class="faq-answer">Yes, depending on your requirements.</div>
-</div>
-
-<div class="faq-item" onclick="this.classList.toggle('active')">
-  <div class="faq-question">
-    <span>How can I contact you?</span>
-    <svg class="arrow" width="14" height="14" viewBox="0 0 24 24">
-      <path fill="white" d="M7 10l5 5 5-5z"/>
-    </svg>
-  </div>
-  <div class="faq-answer">Use the contact form or my socials.</div>
 </div>
 
 </div>
 </section>
 
 <script>
-function toggleMenu(){
-  menu.classList.toggle("active");
-  menuBtn.classList.toggle("active");
-}
+function toggleMenu(){menu.classList.toggle("active");menuBtn.classList.toggle("active");}
+function sendMail(){location.href=`mailto:azura7636@gmail.com`;}
 </script>
 
 </body>
-</html>
+  </html>
