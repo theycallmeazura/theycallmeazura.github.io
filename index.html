@@ -22,7 +22,6 @@
       z-index:-1;
     }
 
-    /* NAV */
     .nav{
       position:fixed;
       top:20px;
@@ -35,14 +34,10 @@
       margin-left:15px;
       text-decoration:none;
       font-size:14px;
-      transition:0.3s;
     }
 
-    .nav a:hover{
-      color:#fff;
-    }
+    .nav a:hover{color:#fff;}
 
-    /* SECTIONS */
     section{
       min-height:100vh;
       display:flex;
@@ -59,7 +54,7 @@
       transform:translateY(0);
     }
 
-    /* CARD */
+    /* CARD WITH CYAN GLOW */
     .card{
       background:rgba(255,255,255,0.04);
       backdrop-filter:blur(16px);
@@ -71,8 +66,8 @@
       border:1px solid rgba(255,255,255,0.08);
 
       box-shadow:
-        0 0 10px rgba(0,150,255,0.08),
-        0 0 20px rgba(255,0,85,0.05);
+        0 0 12px rgba(0,198,255,0.25),
+        0 0 25px rgba(0,198,255,0.15);
 
       transition:0.3s ease;
     }
@@ -80,14 +75,15 @@
     .card:hover{
       transform:translateY(-4px);
       box-shadow:
-        0 0 20px rgba(0,150,255,0.15),
-        0 0 30px rgba(255,0,85,0.08);
+        0 0 20px rgba(0,198,255,0.35),
+        0 0 40px rgba(0,198,255,0.2);
     }
 
+    /* OLD GRADIENT */
     h1{
       font-size:30px;
       font-weight:600;
-      background:linear-gradient(90deg,#4fc3f7,#ff4d6d);
+      background:linear-gradient(90deg,#00c6ff,#ff0055);
       -webkit-background-clip:text;
       -webkit-text-fill-color:transparent;
     }
@@ -106,7 +102,6 @@
       line-height:1.5;
     }
 
-    /* BUTTONS */
     .btn{
       display:flex;
       justify-content:center;
@@ -122,13 +117,8 @@
       transition:0.25s ease;
     }
 
-    .btn.discord{
-      background:#5865F2;
-    }
-
-    .btn.instagram{
-      background:linear-gradient(45deg,#d62976,#962fbf);
-    }
+    .btn.discord{ background:#5865F2; }
+    .btn.instagram{ background:linear-gradient(45deg,#d62976,#962fbf); }
 
     .btn:hover{
       transform:translateY(-2px);
@@ -147,10 +137,9 @@
     }
 
     input:focus, textarea:focus{
-      outline:1px solid rgba(0,150,255,0.4);
+      outline:1px solid rgba(0,198,255,0.4);
     }
 
-    /* FAQ */
     .faq-item{
       text-align:left;
       margin-top:12px;
@@ -194,7 +183,7 @@
 
 <section id="home">
   <div class="card">
-    <h1>theycallmeazura</h1>
+    <h1>theycallmeazura 🚀</h1>
     <div class="typing" data-text='["Managing communities","Growing servers","Building brands"]'></div>
     <p>Helping creators build strong and engaging communities.</p>
   </div>
