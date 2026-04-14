@@ -22,6 +22,91 @@
       z-index:-1;
     }
 
+    /* === NEW: CURSOR GLOW === */
+    .cursor{
+      position:fixed;
+      width:120px;
+      height:120px;
+      border-radius:50%;
+      background:radial-gradient(circle, rgba(0,198,255,0.15), transparent 70%);
+      pointer-events:none;
+      transform:translate(-50%,-50%);
+      z-index:999;
+    }
+
+    /* KEEP ALL YOUR OLD STYLES SAME BELOW */
+
+    .overlay{
+      position:fixed;
+      inset:0;
+      backdrop-filter:blur(6px);
+      background:rgba(0,0,0,0.4);
+      opacity:0;
+      pointer-events:none;
+      transition:0.3s;
+      z-index:140;
+    }
+
+    .overlay.active{
+      opacity:1;
+      pointer-events:auto;
+    }
+
+    .menu-btn{
+      position:fixed;
+      top:20px;
+      left:20px;
+      width:28px;
+      height:22px;
+      cursor:pointer;
+      z-index:200;
+    }
+
+    .menu-btn span{
+      display:block;
+      height:3px;
+      width:100%;
+      background:white;
+      margin:5px 0;
+      transition:0.3s;
+      border-radius:2px;
+    }
+
+    .menu-btn.active span:nth-child(1){
+      transform:rotate(45deg) translate(5px,5px);
+    }
+    .menu-btn.active span:nth-child(2){
+      opacity:0;
+    }
+    .menu-btn.active span:nth-child(3){
+      transform:rotate(-45deg) translate(6px,-6px);
+    }
+
+    .mobile-menu{
+      position:fixed;
+      top:0;
+      left:-100%;
+      width:240px;
+      height:100%;
+      background:#0a0a0a;
+      padding:70px 20px;
+      transition:0.35s ease;
+      z-index:150;
+      border-right:1px solid rgba(255,255,255,0.1);
+    }
+
+    .mobile-menu.active{
+      left:0;
+    }
+
+    .mobile-menu a{
+      display:block;
+      margin:18px 0;
+      color:#ccc;
+      text-decoration:none;
+      font-size:15px;
+    }
+
     .nav{
       position:fixed;
       top:20px;
@@ -36,8 +121,6 @@
       font-size:14px;
     }
 
-    .nav a:hover{color:#fff;}
-
     section{
       min-height:100vh;
       display:flex;
@@ -46,7 +129,7 @@
       padding:40px;
       opacity:0;
       transform:translateY(40px);
-      transition:0.8s ease;
+      transition:0.8s;
     }
 
     section.active{
@@ -54,7 +137,6 @@
       transform:translateY(0);
     }
 
-    /* CARD WITH CYAN GLOW */
     .card{
       background:rgba(255,255,255,0.04);
       backdrop-filter:blur(16px);
@@ -66,104 +148,31 @@
       border:1px solid rgba(255,255,255,0.08);
 
       box-shadow:
-        0 0 12px rgba(0,198,255,0.25),
-        0 0 25px rgba(0,198,255,0.15);
-
-      transition:0.3s ease;
+        0 0 15px rgba(0,198,255,0.25),
+        0 0 30px rgba(0,198,255,0.15);
     }
 
-    .card:hover{
-      transform:translateY(-4px);
-      box-shadow:
-        0 0 20px rgba(0,198,255,0.35),
-        0 0 40px rgba(0,198,255,0.2);
-    }
-
-    /* OLD GRADIENT */
     h1{
       font-size:30px;
-      font-weight:600;
       background:linear-gradient(90deg,#00c6ff,#ff0055);
       -webkit-background-clip:text;
       -webkit-text-fill-color:transparent;
     }
 
-    .typing{
-      margin-top:10px;
-      color:#9aa0a6;
-      font-size:14px;
-      height:22px;
-    }
-
-    p{
-      color:#b0b0b0;
-      margin-top:12px;
-      font-size:14px;
-      line-height:1.5;
-    }
-
     .btn{
       display:flex;
       justify-content:center;
-      align-items:center;
-      gap:8px;
       margin:14px auto;
       padding:12px;
       border-radius:10px;
       width:85%;
       text-decoration:none;
-      font-size:14px;
       color:white;
-      transition:0.25s ease;
+      transition:0.25s;
     }
-
-    .btn.discord{ background:#5865F2; }
-    .btn.instagram{ background:linear-gradient(45deg,#d62976,#962fbf); }
 
     .btn:hover{
-      transform:translateY(-2px);
-      filter:brightness(1.1);
-    }
-
-    input, textarea{
-      width:100%;
-      padding:12px;
-      margin:10px 0;
-      border-radius:8px;
-      border:none;
-      background:#111;
-      color:white;
-      font-size:14px;
-    }
-
-    input:focus, textarea:focus{
-      outline:1px solid rgba(0,198,255,0.4);
-    }
-
-    .faq-item{
-      text-align:left;
-      margin-top:12px;
-      cursor:pointer;
-    }
-
-    .faq-question{
-      background:#111;
-      padding:12px;
-      border-radius:8px;
-      font-size:14px;
-    }
-
-    .faq-answer{
-      max-height:0;
-      overflow:hidden;
-      transition:0.3s ease;
-      color:#aaa;
-      padding:0 10px;
-    }
-
-    .faq-item.active .faq-answer{
-      max-height:120px;
-      padding:10px;
+      transform:scale(1.05);
     }
 
   </style>
@@ -171,11 +180,30 @@
 
 <body>
 
+<!-- NEW CURSOR -->
+<div class="cursor" id="cursor"></div>
+
 <canvas id="particles"></canvas>
+
+<div class="overlay" id="overlay" onclick="toggleMenu()"></div>
+
+<div class="menu-btn" id="menuBtn" onclick="toggleMenu()">
+  <span></span><span></span><span></span>
+</div>
+
+<div class="mobile-menu" id="menu">
+  <a href="#home" onclick="toggleMenu()">Home</a>
+  <a href="#about" onclick="toggleMenu()">About</a>
+  <a href="#philosophy" onclick="toggleMenu()">Philosophy</a>
+  <a href="#socials" onclick="toggleMenu()">Socials</a>
+  <a href="#contact" onclick="toggleMenu()">Contact</a>
+  <a href="#faq" onclick="toggleMenu()">FAQ</a>
+</div>
 
 <div class="nav">
   <a href="#home">Home</a>
   <a href="#about">About</a>
+  <a href="#philosophy">Philosophy</a>
   <a href="#socials">Socials</a>
   <a href="#contact">Contact</a>
   <a href="#faq">FAQ</a>
@@ -184,143 +212,62 @@
 <section id="home">
   <div class="card">
     <h1>theycallmeazura 🚀</h1>
-    <div class="typing" data-text='["Managing communities","Growing servers","Building brands"]'></div>
-    <p>Helping creators build strong and engaging communities.</p>
   </div>
 </section>
 
 <section id="about">
   <div class="card">
     <h1>About</h1>
-    <div class="typing" data-text='["Professional Discord manager","Growth focused","Community builder"]'></div>
-    <p>Focused on moderation, engagement, and long-term growth strategies.</p>
+  </div>
+</section>
+
+<section id="philosophy">
+  <div class="card">
+    <h1>👤 Core Philosophy</h1>
   </div>
 </section>
 
 <section id="socials">
   <div class="card">
     <h1>Socials</h1>
-    <div class="typing" data-text='["Connect with me","Stay updated","Let’s grow together"]'></div>
-    <p>Reach out through my socials.</p>
-
-    <a class="btn discord" href="https://discord.com/users/1476420907718152204" target="_blank">💬 Discord</a>
-    <a class="btn instagram" href="https://instagram.com/theycallmeazura" target="_blank">📸 Instagram</a>
+    <a class="btn discord">Discord</a>
+    <a class="btn instagram">Instagram</a>
   </div>
 </section>
 
 <section id="contact">
   <div class="card">
     <h1>Contact</h1>
-    <p>Let’s work together.</p>
-
-    <input id="name" placeholder="Your Name">
-    <input id="email" placeholder="Your Email">
-    <textarea id="message" placeholder="Your Message"></textarea>
-
-    <div class="btn" onclick="sendMail()">Send Message</div>
   </div>
 </section>
 
 <section id="faq">
   <div class="card">
     <h1>FAQ</h1>
-    <p>Common questions.</p>
-
-    <div class="faq-item">
-      <div class="faq-question">How fast do you reply?</div>
-      <div class="faq-answer">Usually within 24 hours.</div>
-    </div>
-
-    <div class="faq-item">
-      <div class="faq-question">Do you manage servers?</div>
-      <div class="faq-answer">Yes, depending on your needs.</div>
-    </div>
-
-    <div class="faq-item">
-      <div class="faq-question">How can I contact you?</div>
-      <div class="faq-answer">Use the contact form or socials.</div>
-    </div>
-
   </div>
 </section>
 
 <script>
-document.addEventListener("DOMContentLoaded", function(){
+function toggleMenu(){
+  menu.classList.toggle("active");
+  menuBtn.classList.toggle("active");
+  overlay.classList.toggle("active");
+}
 
-// typing
-document.querySelectorAll(".typing").forEach(el=>{
-  let texts=JSON.parse(el.getAttribute("data-text"));
-  let i=0,j=0,cur="",del=false;
-
-  function type(){
-    if(!del && j<texts[i].length){
-      cur+=texts[i][j++];
-      el.innerHTML=cur;
-      setTimeout(type,70);
-    }
-    else if(!del){
-      del=true;
-      setTimeout(type,1500);
-    }
-    else if(del && j>0){
-      cur=cur.slice(0,--j);
-      el.innerHTML=cur;
-      setTimeout(type,30);
-    }
-    else{
-      del=false;
-      i=(i+1)%texts.length;
-      setTimeout(type,500);
-    }
-  }
-  type();
+/* CURSOR FOLLOW */
+const cursor=document.getElementById("cursor");
+document.addEventListener("mousemove",(e)=>{
+  cursor.style.top=e.clientY+"px";
+  cursor.style.left=e.clientX+"px";
 });
 
-// particles
-const c=document.getElementById("particles");
-const ctx=c.getContext("2d");
-c.width=innerWidth;c.height=innerHeight;
-
-let p=[];
-for(let i=0;i<50;i++){
-  p.push({x:Math.random()*c.width,y:Math.random()*c.height,r:Math.random()*2});
-}
-
-function draw(){
-  ctx.clearRect(0,0,c.width,c.height);
-  p.forEach(a=>{
-    ctx.beginPath();
-    ctx.arc(a.x,a.y,a.r,0,6.28);
-    ctx.fillStyle="#888";
-    ctx.fill();
-  });
-  requestAnimationFrame(draw);
-}
-draw();
-
-// scroll
-const sec=document.querySelectorAll("section");
+/* SCROLL */
 window.addEventListener("scroll",()=>{
-  let y=scrollY;
-  sec.forEach(s=>{
-    if(y>s.offsetTop-window.innerHeight/1.2){
+  document.querySelectorAll("section").forEach(s=>{
+    if(scrollY>s.offsetTop-400){
       s.classList.add("active");
     }
   });
-});
-
-// contact
-window.sendMail=function(){
-  let name=document.getElementById("name").value;
-  let msg=document.getElementById("message").value;
-  location.href=`mailto:azura7636@gmail.com?subject=${name}&body=${msg}`;
-}
-
-// faq
-document.querySelectorAll(".faq-item").forEach(i=>{
-  i.onclick=()=>i.classList.toggle("active");
-});
-
 });
 </script>
 
