@@ -22,7 +22,6 @@
       z-index:-1;
     }
 
-    /* CURSOR */
     .cursor{
       position:fixed;
       width:120px;
@@ -34,7 +33,6 @@
       z-index:999;
     }
 
-    /* HAMBURGER */
     .menu-btn{
       position:fixed;
       top:20px;
@@ -62,7 +60,6 @@
       transform:rotate(-45deg) translate(6px,-6px);
     }
 
-    /* MENU */
     .mobile-menu{
       position:fixed;
       top:0;
@@ -84,7 +81,6 @@
       text-decoration:none;
     }
 
-    /* SECTIONS */
     section{
       min-height:100vh;
       display:flex;
@@ -110,7 +106,10 @@
       width:100%;
       text-align:center;
       border:1px solid rgba(255,255,255,0.08);
-      box-shadow:0 0 20px rgba(0,198,255,0.2);
+
+      box-shadow:
+        0 0 20px rgba(0,198,255,0.35),
+        0 0 40px rgba(0,198,255,0.2);
     }
 
     h1{
@@ -134,7 +133,6 @@
       line-height:1.5;
     }
 
-    /* BUTTONS */
     .btn{
       display:flex;
       justify-content:center;
@@ -151,13 +149,23 @@
     .btn.discord{background:#5865F2;}
     .btn.instagram{background:linear-gradient(45deg,#d62976,#962fbf);}
 
+    .stats{
+      display:flex;
+      justify-content:space-between;
+      margin-top:20px;
+    }
+
+    .stat h2{
+      color:#00c6ff;
+      font-size:28px;
+    }
+
   </style>
 </head>
 
 <body>
 
 <div class="cursor" id="cursor"></div>
-
 <canvas id="particles"></canvas>
 
 <div class="menu-btn" id="menuBtn" onclick="toggleMenu()">
@@ -168,50 +176,67 @@
   <a href="#home" onclick="toggleMenu()">Home</a>
   <a href="#about" onclick="toggleMenu()">About</a>
   <a href="#philosophy" onclick="toggleMenu()">Philosophy</a>
+  <a href="#stats" onclick="toggleMenu()">Stats</a>
   <a href="#socials" onclick="toggleMenu()">Socials</a>
   <a href="#contact" onclick="toggleMenu()">Contact</a>
   <a href="#faq" onclick="toggleMenu()">FAQ</a>
 </div>
 
-<!-- HOME -->
 <section id="home">
 <div class="card">
 <h1>theycallmeazura 🚀</h1>
 <div class="typing" data-text='["Managing communities","Growing servers","Building brands"]'></div>
-<p>I help communities grow, stay active and build strong engagement.</p>
+<p>I help communities grow and stay active.</p>
 </div>
 </section>
 
-<!-- ABOUT -->
 <section id="about">
 <div class="card">
 <h1>About</h1>
-<div class="typing" data-text='["Professional manager","Growth focused","Trusted partner"]'></div>
-<p>I specialize in managing online communities with a focus on engagement, structure and long-term success.</p>
+<div class="typing" data-text='["Professional","Growth focused","Trusted"]'></div>
+<p>I manage communities with structure and consistency.</p>
 </div>
 </section>
 
-<!-- PHILOSOPHY -->
 <section id="philosophy">
 <div class="card">
 <h1>👤 Core Philosophy</h1>
-<div class="typing" data-text='["Consistency","Engagement","Long-term growth"]'></div>
-<p>
-A strong community is not built overnight. It requires consistent effort,
-clear structure, and genuine engagement. My philosophy is simple — build
-trust first, growth follows. Every member should feel valued, every staff
-member should have direction, and every system should serve a purpose.
-I focus on long-term sustainability instead of short-term spikes.
-</p>
+<div class="typing" data-text='["Consistency","Trust","Long-term"]'></div>
+<p>Communities are built with trust and consistency.</p>
 </div>
 </section>
 
-<!-- SOCIALS -->
+<section id="stats">
+<div class="card">
+<h1>📊 Experience</h1>
+<div class="typing" data-text='["Proven results","Real impact","Experience matters"]'></div>
+
+<div class="stats">
+  <div class="stat">
+    <h2 class="counter" data-target="5">0</h2>
+    <p>Years Experience</p>
+  </div>
+
+  <div class="stat">
+    <h2 class="counter" data-target="50">0</h2>
+    <p>Communities Managed</p>
+  </div>
+
+  <div class="stat">
+    <h2 class="counter" data-target="100">0</h2>
+    <p>Staffs Assigned</p>
+  </div>
+</div>
+
+<p>I have consistently delivered growth and engagement.</p>
+
+</div>
+</section>
+
 <section id="socials">
 <div class="card">
 <h1>Socials</h1>
-<div class="typing" data-text='["Connect with me","Let’s collaborate","Reach out anytime"]'></div>
-<p>You can contact me through these platforms.</p>
+<div class="typing" data-text='["Connect","Collaborate","Reach out"]'></div>
 
 <a class="btn discord" href="https://discord.com/users/1476420907718152204">💬 Discord</a>
 <a class="btn instagram" href="https://instagram.com/theycallmeazura">📸 Instagram</a>
@@ -219,33 +244,29 @@ I focus on long-term sustainability instead of short-term spikes.
 </div>
 </section>
 
-<!-- CONTACT -->
 <section id="contact">
 <div class="card">
 <h1>Contact</h1>
-<div class="typing" data-text='["Work together","Project inquiries","Let’s build"]'></div>
-<p>Send me a message for collaborations or projects.</p>
+<div class="typing" data-text='["Work together","Projects","Let’s build"]'></div>
+<p>Reach out for collaborations.</p>
 </div>
 </section>
 
-<!-- FAQ -->
 <section id="faq">
 <div class="card">
 <h1>FAQ</h1>
-<div class="typing" data-text='["Quick answers","Common questions","Helpful info"]'></div>
-<p>I usually respond within 24 hours and manage communities professionally.</p>
+<div class="typing" data-text='["Quick answers","Helpful info","Support"]'></div>
+<p>I usually reply within 24 hours.</p>
 </div>
 </section>
 
 <script>
 
-/* MENU */
 function toggleMenu(){
   menu.classList.toggle("active");
   menuBtn.classList.toggle("active");
 }
 
-/* CURSOR */
 const cursor=document.getElementById("cursor");
 document.addEventListener("mousemove",(e)=>{
   cursor.style.top=e.clientY+"px";
@@ -278,13 +299,35 @@ document.querySelectorAll(".typing").forEach(el=>{
   type();
 });
 
-/* SCROLL */
+/* SCROLL + COUNTER */
+let counted=false;
 window.addEventListener("scroll",()=>{
   document.querySelectorAll("section").forEach(s=>{
     if(scrollY>s.offsetTop-400){
       s.classList.add("active");
     }
   });
+
+  let stats=document.getElementById("stats");
+  if(!counted && scrollY>stats.offsetTop-400){
+    counted=true;
+    document.querySelectorAll(".counter").forEach(c=>{
+      let target=+c.dataset.target;
+      let count=0;
+      let step=target/50;
+
+      function update(){
+        count+=step;
+        if(count<target){
+          c.innerText=Math.floor(count);
+          requestAnimationFrame(update);
+        }else{
+          c.innerText=target+"+";
+        }
+      }
+      update();
+    });
+  }
 });
 
 </script>
