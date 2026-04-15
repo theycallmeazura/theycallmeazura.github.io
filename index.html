@@ -15,7 +15,7 @@
       scroll-behavior:smooth;
     }
 
-    /* ✅ BACKGROUND ADDED (SAFE) */
+    /* ✅ SAFE BACKGROUND */
     .bg-animated{
       position:fixed;
       top:0;
@@ -42,26 +42,15 @@
     }
 
     @keyframes moveBg{
-      0%{
-        background-position: 20% 30%, 80% 70%;
-      }
-      100%{
-        background-position: 40% 60%, 60% 40%;
-      }
+      0%{background-position:20% 30%,80% 70%;}
+      100%{background-position:40% 60%,60% 40%;}
     }
-    /* ✅ END BACKGROUND */
 
-    canvas{
-      position:fixed;
-      top:0;
-      left:0;
-      z-index:-1;
-    }
+    canvas{position:fixed;top:0;left:0;z-index:-1;}
 
     .cursor{
       position:fixed;
-      width:120px;
-      height:120px;
+      width:120px;height:120px;
       border-radius:50%;
       background:radial-gradient(circle, rgba(0,198,255,0.15), transparent 70%);
       pointer-events:none;
@@ -70,22 +59,13 @@
     }
 
     .menu-btn{
-      position:fixed;
-      top:20px;
-      left:20px;
-      width:28px;
-      height:22px;
-      cursor:pointer;
-      z-index:200;
+      position:fixed;top:20px;left:20px;
+      width:28px;height:22px;cursor:pointer;z-index:200;
     }
 
     .menu-btn span{
-      display:block;
-      height:3px;
-      width:100%;
-      background:white;
-      margin:5px 0;
-      transition:0.3s;
+      display:block;height:3px;width:100%;
+      background:white;margin:5px 0;transition:0.3s;
     }
 
     .menu-btn.active span:nth-child(1){
@@ -97,55 +77,37 @@
     }
 
     .mobile-menu{
-      position:fixed;
-      top:0;
-      left:-100%;
-      width:240px;
-      height:100%;
+      position:fixed;top:0;left:-100%;
+      width:240px;height:100%;
       background:#0a0a0a;
       padding:70px 20px;
-      transition:0.3s;
-      z-index:150;
+      transition:0.3s;z-index:150;
     }
 
     .mobile-menu.active{left:0;}
 
     .mobile-menu a{
-      display:block;
-      margin:18px 0;
-      color:#ccc;
-      text-decoration:none;
+      display:block;margin:18px 0;color:#ccc;text-decoration:none;
     }
 
     section{
       min-height:100vh;
-      display:flex;
-      justify-content:center;
-      align-items:center;
+      display:flex;justify-content:center;align-items:center;
       padding:40px;
-      opacity:0;
-      transform:translateY(40px);
+      opacity:0;transform:translateY(40px);
       transition:0.8s;
     }
 
-    section.active{
-      opacity:1;
-      transform:translateY(0);
-    }
+    section.active{opacity:1;transform:translateY(0);}
 
     .card{
       background:rgba(255,255,255,0.04);
       backdrop-filter:blur(16px);
-      border-radius:18px;
-      padding:40px;
-      max-width:520px;
-      width:100%;
-      text-align:center;
+      border-radius:18px;padding:40px;
+      max-width:520px;width:100%;text-align:center;
       border:1px solid rgba(255,255,255,0.08);
-
-      box-shadow:
-        0 0 20px rgba(0,198,255,0.35),
-        0 0 40px rgba(0,198,255,0.2);
+      box-shadow:0 0 20px rgba(0,198,255,0.35),
+                 0 0 40px rgba(0,198,255,0.2);
     }
 
     h1{
@@ -155,96 +117,123 @@
       -webkit-text-fill-color:transparent;
     }
 
-    .typing{
-      margin-top:10px;
-      color:#9aa0a6;
-      font-size:14px;
-      height:22px;
-    }
+    .typing{margin-top:10px;color:#9aa0a6;font-size:14px;height:22px;}
 
-    p{
-      color:#b0b0b0;
-      margin-top:12px;
-      font-size:14px;
-      line-height:1.6;
-    }
+    p{color:#b0b0b0;margin-top:12px;font-size:14px;line-height:1.6;}
 
-    .highlight{
-      color:#ffffff;
-      font-weight:500;
-    }
+    .highlight{color:#ffffff;font-weight:500;}
 
     .btn{
-      display:flex;
-      justify-content:center;
-      align-items:center;
-      gap:8px;
-      margin:14px auto;
-      padding:12px;
-      border-radius:10px;
-      width:85%;
-      text-decoration:none;
-      color:white;
-      cursor:pointer;
+      display:flex;justify-content:center;align-items:center;
+      gap:8px;margin:14px auto;padding:12px;
+      border-radius:10px;width:85%;
+      text-decoration:none;color:white;cursor:pointer;
     }
 
     .btn.discord{background:#5865F2;}
     .btn.instagram{background:linear-gradient(45deg,#d62976,#962fbf);}
     .btn.send{background:linear-gradient(90deg,#00c6ff,#0072ff);}
 
-    input, textarea{
-      width:100%;
-      padding:12px;
-      margin:10px 0;
-      border-radius:8px;
-      border:none;
-      background:#111;
-      color:white;
+    input,textarea{
+      width:100%;padding:12px;margin:10px 0;
+      border-radius:8px;border:none;background:#111;color:white;
     }
 
     .faq-item{margin-top:10px;cursor:pointer;}
-
-    .faq-question{
-      display:flex;
-      justify-content:space-between;
-      align-items:center;
-      font-weight:600;
-    }
-
     .faq-answer{
-      max-height:0;
-      overflow:hidden;
-      transition:0.3s;
-      color:#aaa;
+      max-height:0;overflow:hidden;transition:0.3s;color:#aaa;
     }
-
-    .faq-item.active .faq-answer{
-      max-height:120px;
-    }
+    .faq-item.active .faq-answer{max-height:120px;}
 
     .stats{
-      display:flex;
-      justify-content:space-between;
-      margin-top:20px;
+      display:flex;justify-content:space-between;margin-top:20px;
     }
 
-    .stat h2{
-      color:#00c6ff;
-      font-size:28px;
-    }
-
+    .stat h2{color:#00c6ff;font-size:28px;}
   </style>
 </head>
 
 <body>
 
-<!-- ✅ ONLY ADDITION -->
 <div class="bg-animated"></div>
-
 <div class="cursor" id="cursor"></div>
 <canvas id="particles"></canvas>
 
-<!-- ⚠️ YOUR FULL ORIGINAL WEBSITE CONTINUES HERE (UNCHANGED) -->
+<div class="menu-btn" id="menuBtn" onclick="toggleMenu()">
+  <span></span><span></span><span></span>
+</div>
+
+<div class="mobile-menu" id="menu">
+  <a href="#home" onclick="toggleMenu()">Home</a>
+  <a href="#about" onclick="toggleMenu()">About</a>
+  <a href="#philosophy" onclick="toggleMenu()">Philosophy</a>
+  <a href="#stats" onclick="toggleMenu()">Stats</a>
+  <a href="#socials" onclick="toggleMenu()">Socials</a>
+  <a href="#contact" onclick="toggleMenu()">Contact</a>
+  <a href="#faq" onclick="toggleMenu()">FAQ</a>
+</div>
+
+<section id="home"><div class="card">
+<h1>theycallmeazura 🚀</h1>
+<div class="typing" data-text='["Managing communities","Growing servers","Building brands"]'></div>
+<p>I help communities grow with <span class="highlight">strong engagement</span> and <span class="highlight">active members</span>.</p>
+</div></section>
+
+<section id="about"><div class="card">
+<h1>About</h1>
+<div class="typing" data-text='["Professional manager","Growth focused","Trusted partner"]'></div>
+<p>
+I specialize in managing online communities with a strong focus on <span class="highlight">engagement</span>,
+<span class="highlight">structure</span>, and <span class="highlight">long-term growth</span>.
+My approach is strategic — combining moderation, interaction, and system building to create thriving communities.
+</p>
+</div></section>
+
+<section id="philosophy"><div class="card">
+<h1>👤 Core Philosophy</h1>
+<div class="typing" data-text='["Consistency","Engagement","Long-term growth"]'></div>
+<p>
+A strong community is built on <span class="highlight">consistency</span>, trust, and meaningful engagement.
+I focus on long-term sustainability over short-term spikes.
+</p>
+</div></section>
+
+<section id="stats"><div class="card">
+<h1>🤝 Experience</h1>
+<div class="stats">
+<div class="stat"><h2 class="counter" data-target="5">0</h2><p>Years Experience</p></div>
+<div class="stat"><h2 class="counter" data-target="50">0</h2><p>Communities Managed</p></div>
+<div class="stat"><h2 class="counter" data-target="100">0</h2><p>Staffs Assigned</p></div>
+</div>
+</div></section>
+
+<section id="socials"><div class="card">
+<h1>Socials</h1>
+<p>Reach out via Discord or Instagram.</p>
+<a class="btn discord" href="#">💬 Discord</a>
+<a class="btn instagram" href="#">📸 Instagram</a>
+</div></section>
+
+<section id="contact"><div class="card">
+<h1>Contact</h1>
+<input placeholder="Your Name">
+<input placeholder="Your Email">
+<textarea placeholder="Your Message"></textarea>
+<div class="btn send">Send Message</div>
+</div></section>
+
+<section id="faq"><div class="card">
+<h1>FAQ</h1>
+<div class="faq-item" onclick="this.classList.toggle('active')">
+<p><b>How fast do you reply?</b></p>
+<div class="faq-answer">Within 24 hours.</div>
+</div>
+</div></section>
+
+<script>
+function toggleMenu(){menu.classList.toggle("active");menuBtn.classList.toggle("active");}
+document.querySelectorAll("section").forEach(s=>s.classList.add("active"));
+</script>
 
 </body>
 </html>
