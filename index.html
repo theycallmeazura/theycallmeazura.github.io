@@ -1,238 +1,251 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Azura</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Azura</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <style>
-    *{margin:0;padding:0;box-sizing:border-box;}
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
 
-    body{
-      font-family:'Segoe UI',system-ui,sans-serif;
-      background:#0a0a0a;
-      color:white;
-      overflow-x:hidden;
-      scroll-behavior:smooth;
-    }
+body{
+  font-family:'Segoe UI',system-ui,sans-serif;
+  background:#0a0a0a;
+  color:white;
+  overflow-x:hidden;
+  scroll-behavior:smooth;
+}
 
-    /* ✅ SAFE BACKGROUND */
-    .bg-animated{
-      position:fixed;
-      top:0;
-      left:0;
-      width:100%;
-      height:100%;
-      z-index:-10;
+/* BACKGROUND */
+.bg-animated{
+  position:fixed;
+  width:100%;
+  height:100%;
+  z-index:-10;
+  background: radial-gradient(circle at 20% 30%, rgba(0,198,255,0.15), transparent 40%),
+              radial-gradient(circle at 80% 70%, rgba(255,0,85,0.12), transparent 40%),
+              #0a0a0a;
+}
 
-      background: radial-gradient(circle at 20% 30%, rgba(0,198,255,0.15), transparent 40%),
-                  radial-gradient(circle at 80% 70%, rgba(255,0,85,0.12), transparent 40%),
-                  #0a0a0a;
+/* CURSOR */
+.cursor{
+  position:fixed;
+  width:120px;height:120px;
+  border-radius:50%;
+  background:radial-gradient(circle, rgba(0,198,255,0.15), transparent 70%);
+  pointer-events:none;
+  transform:translate(-50%,-50%);
+}
 
-      animation: moveBg 12s ease-in-out infinite alternate;
-    }
+/* MENU */
+.menu-btn{position:fixed;top:20px;left:20px;z-index:200;cursor:pointer;}
+.menu-btn span{display:block;height:3px;background:white;margin:5px;width:25px;}
 
-    .bg-animated::after{
-      content:"";
-      position:absolute;
-      width:100%;
-      height:100%;
-      background-image: linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
-                        linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
-      background-size:40px 40px;
-    }
+.mobile-menu{
+  position:fixed;top:0;left:-100%;
+  width:200px;height:100%;background:#111;padding:60px 20px;
+  transition:.3s;
+}
+.mobile-menu.active{left:0;}
+.mobile-menu a{display:block;color:#ccc;margin:10px 0;text-decoration:none;}
 
-    @keyframes moveBg{
-      0%{background-position:20% 30%,80% 70%;}
-      100%{background-position:40% 60%,60% 40%;}
-    }
+/* SECTIONS */
+section{
+  min-height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  padding:40px;
+  opacity:0;
+  transform:translateY(40px);
+  transition:0.8s;
+}
+section.active{opacity:1;transform:translateY(0);}
 
-    canvas{position:fixed;top:0;left:0;z-index:-1;}
+/* CARD */
+.card{
+  background:rgba(255,255,255,0.05);
+  padding:30px;
+  border-radius:15px;
+  max-width:500px;
+  text-align:center;
+  box-shadow:0 0 20px rgba(0,198,255,0.3);
+}
 
-    .cursor{
-      position:fixed;
-      width:120px;height:120px;
-      border-radius:50%;
-      background:radial-gradient(circle, rgba(0,198,255,0.15), transparent 70%);
-      pointer-events:none;
-      transform:translate(-50%,-50%);
-      z-index:999;
-    }
+h1{
+  background:linear-gradient(90deg,#00c6ff,#ff0055);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
 
-    .menu-btn{
-      position:fixed;top:20px;left:20px;
-      width:28px;height:22px;cursor:pointer;z-index:200;
-    }
+.typing{height:20px;margin-top:10px;color:#aaa;}
 
-    .menu-btn span{
-      display:block;height:3px;width:100%;
-      background:white;margin:5px 0;transition:0.3s;
-    }
+p{margin-top:10px;color:#bbb;}
 
-    .menu-btn.active span:nth-child(1){
-      transform:rotate(45deg) translate(5px,5px);
-    }
-    .menu-btn.active span:nth-child(2){opacity:0;}
-    .menu-btn.active span:nth-child(3){
-      transform:rotate(-45deg) translate(6px,-6px);
-    }
+/* BUTTON */
+.btn{
+  display:flex;align-items:center;justify-content:center;
+  gap:8px;
+  margin:10px auto;
+  padding:10px;
+  border-radius:8px;
+  width:80%;
+  cursor:pointer;
+}
+.btn.send{background:linear-gradient(90deg,#00c6ff,#0072ff);}
 
-    .mobile-menu{
-      position:fixed;top:0;left:-100%;
-      width:240px;height:100%;
-      background:#0a0a0a;
-      padding:70px 20px;
-      transition:0.3s;z-index:150;
-    }
+/* FAQ */
+.faq-item{margin-top:10px;cursor:pointer;}
+.faq-answer{max-height:0;overflow:hidden;transition:.3s;}
+.faq-item.active .faq-answer{max-height:100px;}
 
-    .mobile-menu.active{left:0;}
+/* STATS */
+.stats{display:flex;justify-content:space-around;margin-top:15px;}
+.stat h2{color:#00c6ff;}
 
-    .mobile-menu a{
-      display:block;margin:18px 0;color:#ccc;text-decoration:none;
-    }
-
-    section{
-      min-height:100vh;
-      display:flex;justify-content:center;align-items:center;
-      padding:40px;
-      opacity:0;transform:translateY(40px);
-      transition:0.8s;
-    }
-
-    section.active{opacity:1;transform:translateY(0);}
-
-    .card{
-      background:rgba(255,255,255,0.04);
-      backdrop-filter:blur(16px);
-      border-radius:18px;padding:40px;
-      max-width:520px;width:100%;text-align:center;
-      border:1px solid rgba(255,255,255,0.08);
-      box-shadow:0 0 20px rgba(0,198,255,0.35),
-                 0 0 40px rgba(0,198,255,0.2);
-    }
-
-    h1{
-      font-size:30px;
-      background:linear-gradient(90deg,#00c6ff,#ff0055);
-      -webkit-background-clip:text;
-      -webkit-text-fill-color:transparent;
-    }
-
-    .typing{margin-top:10px;color:#9aa0a6;font-size:14px;height:22px;}
-
-    p{color:#b0b0b0;margin-top:12px;font-size:14px;line-height:1.6;}
-
-    .highlight{color:#ffffff;font-weight:500;}
-
-    .btn{
-      display:flex;justify-content:center;align-items:center;
-      gap:8px;margin:14px auto;padding:12px;
-      border-radius:10px;width:85%;
-      text-decoration:none;color:white;cursor:pointer;
-    }
-
-    .btn.discord{background:#5865F2;}
-    .btn.instagram{background:linear-gradient(45deg,#d62976,#962fbf);}
-    .btn.send{background:linear-gradient(90deg,#00c6ff,#0072ff);}
-
-    input,textarea{
-      width:100%;padding:12px;margin:10px 0;
-      border-radius:8px;border:none;background:#111;color:white;
-    }
-
-    .faq-item{margin-top:10px;cursor:pointer;}
-    .faq-answer{
-      max-height:0;overflow:hidden;transition:0.3s;color:#aaa;
-    }
-    .faq-item.active .faq-answer{max-height:120px;}
-
-    .stats{
-      display:flex;justify-content:space-between;margin-top:20px;
-    }
-
-    .stat h2{color:#00c6ff;font-size:28px;}
-  </style>
+/* FOOTER */
+.footer{
+  text-align:center;
+  padding:15px;
+  color:#777;
+  font-size:12px;
+}
+</style>
 </head>
 
 <body>
 
 <div class="bg-animated"></div>
 <div class="cursor" id="cursor"></div>
-<canvas id="particles"></canvas>
 
-<div class="menu-btn" id="menuBtn" onclick="toggleMenu()">
-  <span></span><span></span><span></span>
-</div>
-
-<div class="mobile-menu" id="menu">
-  <a href="#home" onclick="toggleMenu()">Home</a>
-  <a href="#about" onclick="toggleMenu()">About</a>
-  <a href="#philosophy" onclick="toggleMenu()">Philosophy</a>
-  <a href="#stats" onclick="toggleMenu()">Stats</a>
-  <a href="#socials" onclick="toggleMenu()">Socials</a>
-  <a href="#contact" onclick="toggleMenu()">Contact</a>
-  <a href="#faq" onclick="toggleMenu()">FAQ</a>
-</div>
-
+<!-- HOME -->
 <section id="home"><div class="card">
 <h1>theycallmeazura 🚀</h1>
 <div class="typing" data-text='["Managing communities","Growing servers","Building brands"]'></div>
-<p>I help communities grow with <span class="highlight">strong engagement</span> and <span class="highlight">active members</span>.</p>
+<p>I help communities grow and stay active.</p>
 </div></section>
 
+<!-- ABOUT -->
 <section id="about"><div class="card">
 <h1>About</h1>
 <div class="typing" data-text='["Professional manager","Growth focused","Trusted partner"]'></div>
-<p>
-I specialize in managing online communities with a strong focus on <span class="highlight">engagement</span>,
-<span class="highlight">structure</span>, and <span class="highlight">long-term growth</span>.
-My approach is strategic — combining moderation, interaction, and system building to create thriving communities.
-</p>
+<p>I build strong and engaging communities with long term vision.</p>
 </div></section>
 
+<!-- PHILOSOPHY -->
 <section id="philosophy"><div class="card">
-<h1>👤 Core Philosophy</h1>
-<div class="typing" data-text='["Consistency","Engagement","Long-term growth"]'></div>
-<p>
-A strong community is built on <span class="highlight">consistency</span>, trust, and meaningful engagement.
-I focus on long-term sustainability over short-term spikes.
-</p>
+<h1>Core Philosophy</h1>
+<div class="typing" data-text='["Consistency","Trust","Growth"]'></div>
+<p>Consistency and engagement are the key pillars of growth.</p>
 </div></section>
 
+<!-- STATS -->
 <section id="stats"><div class="card">
-<h1>🤝 Experience</h1>
+<h1>Experience</h1>
 <div class="stats">
-<div class="stat"><h2 class="counter" data-target="5">0</h2><p>Years Experience</p></div>
-<div class="stat"><h2 class="counter" data-target="50">0</h2><p>Communities Managed</p></div>
-<div class="stat"><h2 class="counter" data-target="100">0</h2><p>Staffs Assigned</p></div>
+<div class="stat"><h2 class="counter" data-target="5">0</h2><p>Years</p></div>
+<div class="stat"><h2 class="counter" data-target="50">0</h2><p>Communities</p></div>
+<div class="stat"><h2 class="counter" data-target="100">0</h2><p>Staff</p></div>
 </div>
 </div></section>
 
-<section id="socials"><div class="card">
-<h1>Socials</h1>
-<p>Reach out via Discord or Instagram.</p>
-<a class="btn discord" href="#">💬 Discord</a>
-<a class="btn instagram" href="#">📸 Instagram</a>
-</div></section>
-
+<!-- CONTACT -->
 <section id="contact"><div class="card">
 <h1>Contact</h1>
+<div class="typing" data-text='["Work with me","Let's connect","Start a project"]'></div>
+
 <input placeholder="Your Name">
 <input placeholder="Your Email">
 <textarea placeholder="Your Message"></textarea>
-<div class="btn send">Send Message</div>
+
+<div class="btn send">
+<svg width="18" height="18" fill="white" viewBox="0 0 24 24">
+<path d="M2 21l21-9L2 3v7l15 2-15 2z"/>
+</svg>
+Send Message
+</div>
+
 </div></section>
 
+<!-- FAQ -->
 <section id="faq"><div class="card">
 <h1>FAQ</h1>
+<div class="typing" data-text='["Quick answers","Common questions","Helpful info"]'></div>
+
 <div class="faq-item" onclick="this.classList.toggle('active')">
 <p><b>How fast do you reply?</b></p>
 <div class="faq-answer">Within 24 hours.</div>
 </div>
+
+<div class="faq-item" onclick="this.classList.toggle('active')">
+<p><b>Do you manage servers?</b></p>
+<div class="faq-answer">Yes, based on requirements.</div>
+</div>
+
+<div class="faq-item" onclick="this.classList.toggle('active')">
+<p><b>How can I contact you?</b></p>
+<div class="faq-answer">Use contact form or socials.</div>
+</div>
+
 </div></section>
 
+<div class="footer">Made by Azura ©</div>
+
 <script>
-function toggleMenu(){menu.classList.toggle("active");menuBtn.classList.toggle("active");}
-document.querySelectorAll("section").forEach(s=>s.classList.add("active"));
+/* CURSOR */
+document.addEventListener("mousemove",e=>{
+cursor.style.left=e.clientX+"px";
+cursor.style.top=e.clientY+"px";
+});
+
+/* TYPING */
+document.querySelectorAll(".typing").forEach(el=>{
+let texts=JSON.parse(el.dataset.text);
+let i=0,j=0,cur="",del=false;
+
+function type(){
+if(!del && j<texts[i].length){
+cur+=texts[i][j++];
+el.innerHTML=cur;
+setTimeout(type,70);
+}else if(!del){
+del=true;setTimeout(type,1500);
+}else if(del && j>0){
+cur=cur.slice(0,--j);
+el.innerHTML=cur;
+setTimeout(type,30);
+}else{
+del=false;i=(i+1)%texts.length;
+setTimeout(type,500);
+}}
+type();
+});
+
+/* SCROLL + COUNTER */
+let counted=false;
+window.addEventListener("scroll",()=>{
+document.querySelectorAll("section").forEach(s=>{
+if(scrollY>s.offsetTop-400)s.classList.add("active");
+});
+
+let stats=document.getElementById("stats");
+if(!counted && scrollY>stats.offsetTop-400){
+counted=true;
+document.querySelectorAll(".counter").forEach(c=>{
+let target=+c.dataset.target;
+let count=0;
+let step=target/50;
+function update(){
+count+=step;
+if(count<target){
+c.innerText=Math.floor(count);
+requestAnimationFrame(update);
+}else{
+c.innerText=target+"+";
+}}
+update();
+});
+}
+});
 </script>
 
 </body>
