@@ -210,7 +210,11 @@
   color:#777;
   font-size:12px;
 }
-  
+  .icon{
+  width:18px;
+  height:18px;
+  fill:white;
+      }
     
   </style>
 </head>
@@ -319,7 +323,11 @@ stable, and impactful.
 <input id="email" placeholder="Your Email">
 <textarea id="message" placeholder="Your Message"></textarea>
 
-<div class="btn send" onclick="sendMail()">Send Message</div>
+<div class="btn send" onclick="sendMail()">
+  <svg class="icon" viewBox="0 0 24 24">
+    <path d="M2 21l21-9L2 3v7l15 2-15 2z"/>
+  </svg>
+  Send Message
 </div>
 </section>
 
