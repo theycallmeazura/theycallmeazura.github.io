@@ -1,121 +1,141 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Azura</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Azura</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <style>
-    *{margin:0;padding:0;box-sizing:border-box;}
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
 
-    body{
-      font-family:'Segoe UI',system-ui,sans-serif;
-      background:#0a0a0a;
-      color:white;
-      overflow-x:hidden;
-      scroll-behavior:smooth;
-    }
+body{
+  font-family:'Segoe UI',system-ui,sans-serif;
+  background:#0a0a0a;
+  color:white;
+  overflow-x:hidden;
+  scroll-behavior:smooth;
+}
 
-    /* BACKGROUND SAFE */
-    .bg-animated{
-      position:fixed;
-      width:100%;
-      height:100%;
-      z-index:-10;
-      background: radial-gradient(circle at 20% 30%, rgba(0,198,255,0.15), transparent 40%),
-                  radial-gradient(circle at 80% 70%, rgba(255,0,85,0.12), transparent 40%),
-                  #0a0a0a;
-    }
+/* SAFE BACKGROUND */
+.bg-animated{
+  position:fixed;
+  width:100%;
+  height:100%;
+  z-index:-10;
+  background: radial-gradient(circle at 20% 30%, rgba(0,198,255,0.15), transparent 40%),
+              radial-gradient(circle at 80% 70%, rgba(255,0,85,0.12), transparent 40%),
+              #0a0a0a;
+}
 
-    .cursor{
-      position:fixed;
-      width:120px;height:120px;
-      border-radius:50%;
-      background:radial-gradient(circle, rgba(0,198,255,0.15), transparent 70%);
-      pointer-events:none;
-      transform:translate(-50%,-50%);
-      z-index:999;
-    }
+/* CURSOR */
+.cursor{
+  position:fixed;
+  width:120px;height:120px;
+  border-radius:50%;
+  background:radial-gradient(circle, rgba(0,198,255,0.15), transparent 70%);
+  pointer-events:none;
+  transform:translate(-50%,-50%);
+}
 
-    section{
-      min-height:100vh;
-      display:flex;
-      justify-content:center;
-      align-items:center;
-      padding:40px;
-      opacity:0;
-      transform:translateY(40px);
-      transition:0.8s;
-    }
+/* SECTIONS */
+section{
+  min-height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  padding:40px;
+  opacity:0;
+  transform:translateY(40px);
+  transition:0.8s;
+}
+section.active{
+  opacity:1;
+  transform:translateY(0);
+}
 
-    section.active{
-      opacity:1;
-      transform:translateY(0);
-    }
+/* CARD */
+.card{
+  background:rgba(255,255,255,0.05);
+  padding:30px;
+  border-radius:15px;
+  max-width:500px;
+  width:100%;
+  text-align:center;
+  box-shadow:0 0 20px rgba(0,198,255,0.3);
+}
 
-    .card{
-      background:rgba(255,255,255,0.04);
-      border-radius:18px;
-      padding:40px;
-      max-width:520px;
-      text-align:center;
-      border:1px solid rgba(255,255,255,0.08);
-      box-shadow:0 0 20px rgba(0,198,255,0.35);
-    }
+/* TEXT */
+h1{
+  background:linear-gradient(90deg,#00c6ff,#ff0055);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
 
-    h1{
-      background:linear-gradient(90deg,#00c6ff,#ff0055);
-      -webkit-background-clip:text;
-      -webkit-text-fill-color:transparent;
-    }
+.typing{
+  margin-top:10px;
+  height:20px;
+  color:#aaa;
+}
 
-    .typing{height:22px;color:#aaa;margin-top:10px;}
+p{
+  margin-top:10px;
+  color:#bbb;
+}
 
-    p{margin-top:10px;color:#bbb;}
+/* BUTTON */
+.btn{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
+  margin:10px auto;
+  padding:10px;
+  border-radius:8px;
+  width:80%;
+  cursor:pointer;
+}
+.btn.send{
+  background:linear-gradient(90deg,#00c6ff,#0072ff);
+}
 
-    .btn{
-      display:flex;
-      justify-content:center;
-      align-items:center;
-      gap:8px;
-      margin:14px auto;
-      padding:12px;
-      border-radius:10px;
-      width:85%;
-      color:white;
-      cursor:pointer;
-    }
+/* INPUT */
+input,textarea{
+  width:100%;
+  padding:10px;
+  margin:8px 0;
+  border-radius:8px;
+  border:none;
+  background:#111;
+  color:white;
+}
 
-    .btn.send{background:linear-gradient(90deg,#00c6ff,#0072ff);}
+/* FAQ */
+.faq-item{margin-top:10px;cursor:pointer;}
+.faq-answer{
+  max-height:0;
+  overflow:hidden;
+  transition:.3s;
+}
+.faq-item.active .faq-answer{
+  max-height:100px;
+}
 
-    input,textarea{
-      width:100%;
-      padding:12px;
-      margin:10px 0;
-      border-radius:8px;
-      border:none;
-      background:#111;
-      color:white;
-    }
+/* STATS */
+.stats{
+  display:flex;
+  justify-content:space-around;
+}
+.stat h2{
+  color:#00c6ff;
+}
 
-    .faq-item{margin-top:10px;cursor:pointer;}
-    .faq-answer{max-height:0;overflow:hidden;transition:0.3s;}
-    .faq-item.active .faq-answer{max-height:120px;}
-
-    .stats{
-      display:flex;
-      justify-content:space-between;
-      margin-top:20px;
-    }
-
-    .stat h2{color:#00c6ff;}
-
-    .footer{
-      text-align:center;
-      padding:20px;
-      font-size:12px;
-      color:#777;
-    }
-  </style>
+/* FOOTER */
+.footer{
+  text-align:center;
+  padding:15px;
+  font-size:12px;
+  color:#777;
+}
+</style>
 </head>
 
 <body>
@@ -124,40 +144,33 @@
 <div class="cursor" id="cursor"></div>
 
 <!-- HOME -->
-<section id="home">
-<div class="card">
+<section id="home"><div class="card">
 <h1>theycallmeazura 🚀</h1>
 <div class="typing" data-text='["Managing communities","Growing servers","Building brands"]'></div>
-<p>I help communities grow.</p>
-</div>
-</section>
+<p>I help communities grow and stay active.</p>
+</div></section>
 
 <!-- ABOUT -->
-<section id="about">
-<div class="card">
+<section id="about"><div class="card">
 <h1>About</h1>
 <div class="typing" data-text='["Professional manager","Growth focused","Trusted partner"]'></div>
-<p>I manage communities with long-term growth strategies.</p>
-</div>
-</section>
+<p>I build strong and engaging communities with long term vision.</p>
+</div></section>
 
 <!-- STATS -->
-<section id="stats">
-<div class="card">
+<section id="stats"><div class="card">
 <h1>Experience</h1>
 <div class="stats">
 <div class="stat"><h2 class="counter" data-target="5">0</h2><p>Years</p></div>
 <div class="stat"><h2 class="counter" data-target="50">0</h2><p>Communities</p></div>
 <div class="stat"><h2 class="counter" data-target="100">0</h2><p>Staff</p></div>
 </div>
-</div>
-</section>
+</div></section>
 
 <!-- CONTACT -->
-<section id="contact">
-<div class="card">
+<section id="contact"><div class="card">
 <h1>Contact</h1>
-<div class="typing" data-text='["Work together","Let’s connect","Start a project"]'></div>
+<div class="typing" data-text='["Work with me","Let’s connect","Start a project"]'></div>
 
 <input id="name" placeholder="Your Name">
 <input id="email" placeholder="Your Email">
@@ -170,12 +183,10 @@
 Send Message
 </div>
 
-</div>
-</section>
+</div></section>
 
 <!-- FAQ -->
-<section id="faq">
-<div class="card">
+<section id="faq"><div class="card">
 <h1>FAQ</h1>
 <div class="typing" data-text='["Quick answers","Common questions","Helpful info"]'></div>
 
@@ -194,45 +205,62 @@ Send Message
 <div class="faq-answer">Use contact form.</div>
 </div>
 
-</div>
-</section>
+</div></section>
 
 <div class="footer">Made by Azura ©</div>
 
 <script>
-/* cursor */
+/* CURSOR FIX */
+const cursor=document.getElementById("cursor");
 document.addEventListener("mousemove",e=>{
 cursor.style.left=e.clientX+"px";
 cursor.style.top=e.clientY+"px";
 });
 
-/* typing */
+/* TYPING FIX */
 document.querySelectorAll(".typing").forEach(el=>{
 let texts=JSON.parse(el.dataset.text);
 let i=0,j=0,cur="",del=false;
+
 function type(){
 if(!del && j<texts[i].length){
-cur+=texts[i][j++];el.innerHTML=cur;setTimeout(type,70);
-}else if(!del){del=true;setTimeout(type,1500);}
-else if(del && j>0){
-cur=cur.slice(0,--j);el.innerHTML=cur;setTimeout(type,30);
-}else{del=false;i=(i+1)%texts.length;setTimeout(type,500);}
-}
+cur+=texts[i][j++];
+el.innerHTML=cur;
+setTimeout(type,70);
+}else if(!del){
+del=true;
+setTimeout(type,1500);
+}else if(del && j>0){
+cur=cur.slice(0,--j);
+el.innerHTML=cur;
+setTimeout(type,30);
+}else{
+del=false;
+i=(i+1)%texts.length;
+setTimeout(type,500);
+}}
 type();
 });
 
-/* scroll + counter */
+/* SCROLL + COUNTER FIX */
 let counted=false;
-window.addEventListener("scroll",()=>{
+
+function handleScroll(){
 document.querySelectorAll("section").forEach(s=>{
-if(scrollY>s.offsetTop-400)s.classList.add("active");
+if(window.scrollY>s.offsetTop-300){
+s.classList.add("active");
+}
 });
+
 let stats=document.getElementById("stats");
-if(!counted && scrollY>stats.offsetTop-400){
+if(!counted && window.scrollY>stats.offsetTop-300){
 counted=true;
+
 document.querySelectorAll(".counter").forEach(c=>{
 let target=+c.dataset.target;
-let count=0,step=target/50;
+let count=0;
+let step=target/40;
+
 function update(){
 count+=step;
 if(count<target){
@@ -244,13 +272,16 @@ c.innerText=target+"+";
 update();
 });
 }
-});
+}
 
-/* send mail */
+window.addEventListener("scroll",handleScroll);
+handleScroll();
+
+/* MAIL FIX */
 function sendMail(){
 let name=document.getElementById("name").value;
 let msg=document.getElementById("message").value;
-location.href=`mailto:azura7636@gmail.com?subject=${name}&body=${msg}`;
+window.location.href=`mailto:azura7636@gmail.com?subject=${name}&body=${msg}`;
 }
 </script>
 
