@@ -198,16 +198,19 @@
 
    .footer{
   display:flex;
-  flex-direction:column;   /* 👈 THIS MAKES THEM GO BELOW EACH OTHER */
-  align-items:center;      /* center them */
-  gap:6px;                 /* space between lines */
+  flex-direction:column;
+
+  justify-content:center;   /* vertical center (inside footer) */
+  align-items:center;       /* horizontal center */
 
   text-align:center;
-  padding:15px 0;
+  gap:6px;
+
+  padding:20px 0;
   color:#777;
   font-size:12px;
-  margin-top:20px;
 }
+  
     
   </style>
 </head>
@@ -223,7 +226,7 @@
 
 <div class="mobile-menu" id="menu">
   <a href="#home" onclick="toggleMenu()">Home</a>
-  <a href="#about" onclick="toggleMenu()">About</a>
+  <a href="#about" onclick="toggleMenu()>About</a>
   <a href="#philosophy" onclick="toggleMenu()">Philosophy</a>
   <a href="#stats" onclick="toggleMenu()">Stats</a>
   <a href="#socials" onclick="toggleMenu()">Socials</a>
@@ -390,9 +393,11 @@ window.addEventListener("scroll",()=>{
 });
 </script>
 
-  <div class="footer">Made by AZURA©
-All Rights Reserved 
-  last edited on 4/15/2026 </div>
+<div class="footer">
+  <div>Made by Azura ©</div>
+  <div>All Rights Reserved</div>
+  <div>Last Edited On 15/4/2026</div>
+</div>
   
 </body>
 </html>
