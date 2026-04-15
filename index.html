@@ -196,7 +196,12 @@
       font-size:28px;
     }
 
-    .footer{
+   .footer{
+  display:flex;
+  flex-direction:column;   /* 👈 THIS MAKES THEM GO BELOW EACH OTHER */
+  align-items:center;      /* center them */
+  gap:6px;                 /* space between lines */
+
   text-align:center;
   padding:15px 0;
   color:#777;
